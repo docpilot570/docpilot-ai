@@ -1,0 +1,15 @@
+export default function Home() {
+  return (
+    <div
+    style={{fontFamily:'sans-serif', 
+    padding:40}}>
+          <h1>DocPilot AI</h1>
+          <p>Business documents and
+    reports in 5 minutes.</p>
+          <button style={{padding:12,
+    fontSize:16}}>
+            Try Demo
+          </button>
+        </div>
+  )
+}
