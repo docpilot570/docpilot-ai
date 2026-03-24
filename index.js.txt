@@ -6,12 +6,12 @@ padding:40}}>
       <h1>DocPilot AI</h1>
       <p>Business documents and
 reports in 5 minutes.</p>
-      <button 
+     <button 
   style={{padding:12, fontSize:16}} 
   onClick={() => window.location.href = "/demo.html"}
 >
   Try Demo
-</button>
+</button> 
     </div>
   )
 }
