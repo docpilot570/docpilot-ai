@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DocPilot AI Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+    label, select, input, textarea, button { display: block; width: 100%; margin-bottom: 15px; }
+    button { padding: 10px; font-size: 16px; cursor: pointer; }
+    #output { background: #eee; padding: 10px; border-radius: 5px; min-height: 100px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="lang" data-key="title">DocPilot AI</h1>
+    <p class="lang" data-key="description">Business documents and reports in 5 minutes</p>
+
+    <label for="language" class="lang" data-key="chooseLang">Choose language:</label>
+    <select id="language">
+      <option value="uk">Українська</option>
+      <option value="pl">Polski</option>
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="ru">Русский</option>
+    </select>
+
+    <label for="docTitle" class="lang" data-key="docTitleLabel">Document Title:</label>
+    <input type="text" id="docTitle" placeholder="Enter document title">
+
+    <label for="docType" class="lang" data-key="docTypeLabel">Document Type:</label>
+    <input type="text" id="docType" placeholder="e.g., Contract, Report">
+
+    <label for="docText" class="lang" data-key="docTextLabel">Details:</label>
+    <textarea id="docText" rows="5" placeholder="Enter details or description"></textarea>
+
+    <button id="generateBtn" class="lang" data-key="generateBtn">Generate Document</button>
+
+    <h3 class="lang" data-key="outputLabel">Generated Document:</h3>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    // Переводы для языков
+    const translations = {
+      uk: {
+        title: "DocPilot AI",
+        description: "Бізнес-документи та звіти за 5 хвилин",
+        chooseLang: "Оберіть мову:",
+        docTitleLabel: "Назва документа:",
+        docTypeLabel: "Тип документа:",
+        docTextLabel: "Деталі:",
+        generateBtn: "Згенерувати документ",
+        outputLabel: "Згенерований документ:"
+      },
+      pl: {
+        title: "DocPilot AI",
+        description: "Dokumenty i raporty biznesowe w 5 minut",
+        chooseLang: "Wybierz język:",
+        docTitleLabel: "Tytuł dokumentu:",
+        docTypeLabel: "Rodzaj dokumentu:",
+        docTextLabel: "Szczegóły:",
+        generateBtn: "Generuj dokument",
+        outputLabel: "Wygenerowany dokument:"
+      },
+      en: {
+        title: "DocPilot AI",
+        description: "Business documents and reports in 5 minutes",
+        chooseLang: "Choose language:",
+        docTitleLabel: "Document Title:",
+        docTypeLabel: "Document Type:",
+        docTextLabel: "Details:",
+        generateBtn: "Generate Document",
+        outputLabel: "Generated Document:"
+      },
+      de: {
+        title: "DocPilot AI",
+        description: "Geschäftsdokumente und Berichte in 5 Minuten",
+        chooseLang: "Sprache wählen:",
+        docTitleLabel: "Dokumenttitel:",
+        docTypeLabel: "Dokumenttyp:",
+        docTextLabel: "Details:",
+        generateBtn: "Dokument generieren",
+        outputLabel: "Generiertes Dokument:"
+      },
+      ru: {
+        title: "DocPilot AI",
+        description: "Бизнес-документы и отчеты за 5 минут",
+        chooseLang: "Выберите язык:",
+        docTitleLabel: "Название документа:",
+        docTypeLabel: "Тип документа:",
+        docTextLabel: "Детали:",
+        generateBtn: "Сгенерировать документ",
+        outputLabel: "Сгенерированный документ:"
+      }
+    };
+
+    // Изменение языка на лету
+    const langSelect = document.getElementById('language');
+    langSelect.addEventListener('change', (e) => {
+      const lang = e.target.value;
+      document.querySelectorAll('.lang').forEach(el => {
+        const key = el.dataset.key;
+        el.innerText = translations[lang][key];
+      });
+    });
+
+    // Генерация документа (демо)
+    const generateBtn = document.getElementById('generateBtn');
+    generateBtn.addEventListener('click', () => {
+      const title = document.getElementById('docTitle').value || "(No Title)";
+      const type = document.getElementById('docType').value || "(No Type)";
+      const text = document.getElementById('docText').value || "(No Details)";
+      const lang = langSelect.value;
+
+      // Здесь нужно подключить API генератора документов
+      // Для демо просто выводим текст
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerText = `Language: ${lang}\nTitle: ${title}\nType: ${type}\nDetails:\n${text}`;
+    });
+  </script>
+</body>
+</html>
