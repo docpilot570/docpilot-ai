@@ -1,18 +1,18 @@
-export default function Home() {
   return (
-    <div
-style={{fontFamily:'sans-serif', 
-padding:40}}>
-      <h1>DocPilot AI</h1>
-      <p>Business documents and
-reports in 5 minutes.</p>
-<button 
-  style={{padding:12, fontSize:16}} 
-  onClick={() => window.location.href 
-= "/demo.html"}
->
-  Try Demo
-</button> 
+    <div style={{padding:20}}>
+      <h1>Demo работает</h1>
+      <button onClick={() => alert("Готово!")}>
+        Generate
+      </button>
     </div>
   )
 }
+
+
+
+<button 
+  style={{padding:12, fontSize:16}} 
+  onClick={() => window.location.href='/demo'}
+>
+  Try Demo
+</button>
