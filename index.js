@@ -10,9 +10,4 @@
 
 
 
-<button 
-  style={{padding:12, fontSize:16}} 
-  onClick={() => window.location.href='/demo'}
->
-  Try Demo
-</button>
+<a href="/demo.html">Try Demo</a>
