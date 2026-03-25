@@ -1,13 +1,15 @@
+export default function Home() {
   return (
-    <div style={{padding:20}}>
-      <h1>Demo работает</h1>
-      <button onClick={() => alert("Готово!")}>
-        Generate
-      </button>
+    <div style={{textAlign:'center', marginTop:'50px'}}>
+      <h1>DocPilot AI</h1>
+      <p>Business documents in 5 minutes</p>
+
+      <a href="/demo.html">
+        <button style={{padding:15, fontSize:18}}>
+          Try Demo
+        </button>
+      </a>
+
     </div>
-  )
+  );
 }
-
-
-
-<a href="/demo.html">Try Demo</a>
