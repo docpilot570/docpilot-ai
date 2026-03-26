@@ -1,10 +1,8 @@
 export default function Demo() {
   return (
     <div style={{padding:20}}>
-      <h1>Demo работает</h1>
-      <button onClick={() => alert("Готово!")}>
-        Generate
-      </button>
+      <h1>Demo</h1>
+      <p>This is the document generator page.</p>
     </div>
-  )
+  );
 }
