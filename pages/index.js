@@ -7,4 +7,8 @@ export default function Home() {
     </div>
   );
 }
-
+<div style={{marginTop:30}}>
+  <a href="/terms" style={{marginRight:15}}>Terms</a>
+  <a href="/privacy" style={{marginRight:15}}>Privacy</a>
+  <a href="/contact">Contact</a>
+</div>
