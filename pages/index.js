@@ -59,7 +59,7 @@ export default function Home() {
 
       <div style={{marginTop: 50}}>
         <h2>Contact</h2>
-        <p>Email: support@yourdomain.com</p>
+        <p>Email: docpilot.ai.service@gmail.com</p>
       </div>
 
       <hr style={{marginTop: 50}} />
