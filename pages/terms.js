@@ -28,7 +28,7 @@ export default function Terms() {
 
       <h2>Contact</h2>
       <p>
-        Email: support@yourdomain.com
+        Email: docpilot.ai.service@gmail.com
       </p>
     </div>
   );
