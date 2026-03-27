@@ -21,7 +21,7 @@ export default function Privacy() {
 
       <h2>Contact</h2>
       <p>
-        If you have any questions, contact us: support@yourdomain.com
+        If you have any questions, contact us: docpilot.ai.service@gmail.com
       </p>
     </div>
   );
