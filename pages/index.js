@@ -74,3 +74,5 @@ export default function Home() {
     </div>
   );
 }
+<a href="/pricing" style={{marginRight: 15}}>Pricing</a>
+}
