@@ -55,6 +55,9 @@ export default function Home() {
         <p>
           Payment integration via Paysera is in progress. Paid access will be available soon.
         </p>
+        <p>
+          <a href="/pricing">View pricing plans</a>
+        </p>
       </div>
 
       <div style={{marginTop: 50}}>
@@ -74,6 +77,4 @@ export default function Home() {
 
     </div>
   );
-}
-<a href="/pricing" style={{marginRight: 15}}>Pricing</a>
 }
