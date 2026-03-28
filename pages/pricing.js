@@ -33,7 +33,19 @@ export default function Pricing() {
           Buy Pro (Paysera)
         </button>
       </div>
-
+      <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:20}}>
+        <h2>Business</h2>
+        <p style={{fontSize:22}}><b>€49.99 / month</b></p>
+        <ul>
+          <li>Unlimited documents</li>
+          <li>Priority processing</li>
+          <li>Premium templates</li>
+          <li>Business support</li>
+        </ul>
+        <button style={{padding:"12px 20px", fontSize:16, cursor:"pointer"}}>
+          Buy Business (Paysera)
+        </button>
+      </div>
       <p style={{marginTop:30}}>
         Need a custom plan for your business? Contact us via email.
       </p>
