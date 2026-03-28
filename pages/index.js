@@ -66,6 +66,7 @@ export default function Home() {
 
       <div style={{marginTop: 20, fontSize: 16}}>
         <a href="/demo" style={{marginRight: 15}}>Demo</a>
+        <a href="/pricing" style={{marginRight: 15}}>Pricing</a>
         <a href="/terms" style={{marginRight: 15}}>Terms</a>
         <a href="/privacy" style={{marginRight: 15}}>Privacy</a>
         <a href="/contact">Contact</a>
