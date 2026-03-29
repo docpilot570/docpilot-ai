@@ -47,7 +47,7 @@ export default function Home() {
         </ol>
 
         <h2>Supported languages</h2>
-        <p>English, Ukrainian, Polish, German, Russian</p>
+        <p>English, Ukrainian, Polish, German, French</p>
       </div>
 
       <div style={{marginTop: 50}}>
