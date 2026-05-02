@@ -87,13 +87,19 @@ export default function Pricing() {
         </a>
       </div>
 
-      <p style={{marginTop:30}}>
+     <p style={{marginTop:30}}>
         Need a custom plan for your business? Contact us via email.
       </p>
 
-      <div style={{marginTop:30}}>
-        <a href="/">Back to Home</a>
+      <div style={{marginTop:30, textAlign:"center", fontSize:"15px"}}>
+        <a href="/" style={{marginRight:15}}>Home</a>
+        <a href="/demo" style={{marginRight:15}}>Demo</a>
+        <a href="/pricing" style={{marginRight:15}}>Pricing</a>
+        <a href="/dashboard" style={{marginRight:15, fontWeight:"bold", color:"#4CAF50"}}>Dashboard</a>
+        <a href="/terms" style={{marginRight:15}}>Terms</a>
+        <a href="/privacy" style={{marginRight:15}}>Privacy</a>
+        <a href="/contact">Contact</a>
       </div>
     </div>
   );
-}
+} 
