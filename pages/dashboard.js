@@ -1,5 +1,5 @@
 export default function Dashboard() {
-  return (
+  return ( //
     <div style={{maxWidth: 800, margin: "40px auto", padding: "0 20px", fontFamily: "Arial"}}>
       <h1>My Account / Dashboard</h1>
       
