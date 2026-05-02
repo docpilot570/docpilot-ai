@@ -53,7 +53,7 @@ export default function Home() {
       <div style={{marginTop: 50}}>
         <h2>Pricing</h2>
         <p>
-          Payment integration via Paysera is in progress. Paid access will be available soon.
+          Payment integration via Payhip is ready. Choose your plan below.
         </p>
         <p>
           <a href="/pricing">View pricing plans</a>
@@ -65,9 +65,9 @@ export default function Home() {
         <p>Email: docpilot.ai.service@gmail.com</p>
       </div>
 
-     <hr style={{marginTop: 50}} />
+      <hr style={{marginTop: 50}} />
 
-     <div style={{marginTop: 20, fontSize: 16}}>
+      <div style={{marginTop: 20, fontSize: 16, textAlign: "center"}}>
         <a href="/demo" style={{marginRight: 15}}>Demo</a>
         <a href="/pricing" style={{marginRight: 15}}>Pricing</a>
         <a href="/dashboard" style={{marginRight: 15, fontWeight: "bold", color: "#4CAF50"}}>Dashboard</a>
@@ -75,3 +75,7 @@ export default function Home() {
         <a href="/privacy" style={{marginRight: 15}}>Privacy</a>
         <a href="/contact">Contact</a>
       </div> 
+    </div>
+  );
+}
+
