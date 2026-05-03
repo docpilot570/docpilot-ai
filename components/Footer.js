@@ -2,8 +2,8 @@
 export default function Footer() {
   return (
     <footer style={{
-      marginTop: "60px",
-      padding: "30px 20px",
+      marginTop: "80px",
+      padding: "40px 20px 30px",
       backgroundColor: "#f8f8f8",
       borderTop: "1px solid #ddd",
       fontSize: "13px",
@@ -21,12 +21,12 @@ export default function Footer() {
 
         <p style={{marginTop: "15px"}}>
           We process your data in accordance with 
-          <strong> GDPR (EU) </strong> and 
-          <strong> Data Protection Act (UK) </strong>. 
-          Your data is secure and not shared with third parties without consent.
+          <strong> GDPR (European Union)</strong> and 
+          <strong> UK Data Protection Act</strong>. 
+          Your data is processed securely and is not shared with third parties without consent.
         </p>
 
-        <div style={{marginTop: "20px"}}>
+        <div style={{marginTop: "25px", fontSize: "14px"}}>
           <a href="/" style={{marginRight: 15}}>Home</a>
           <a href="/demo" style={{marginRight: 15}}>Demo</a>
           <a href="/pricing" style={{marginRight: 15}}>Pricing</a>
@@ -36,10 +36,11 @@ export default function Footer() {
           <a href="/contact">Contact</a>
         </div>
 
-        <p style={{marginTop: "20px", fontSize: "12px"}}>
+        <p style={{marginTop: "25px", fontSize: "12px"}}>
           © 2026 DocPilot AI. All rights reserved.
         </p>
       </div>
     </footer>
   );
 }
+
