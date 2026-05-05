@@ -2,18 +2,16 @@ import Head from "next/head";
 import Footer from "../components/Footer";
 
 export default function App({ Component, pageProps }) {
-  возвращаться (
+  return (
     <>
-      <Голова>
-        <мета
-          name="verify-paysera"
-          содержание = " 58db8407c727c94c67bf7a0b636b16 5a"
-        />
+      <Head>
+        <title>DocPilot AI - AI Document Generator</title>
+        <meta name="description" content="Generate business documents with AI" />
       </Head>
 
       <Component {...pageProps} />
       
-      <Нижний колонтитул />
+      <Footer />
     </>
   );
 }
