@@ -74,6 +74,7 @@ export default function Home() {
         <a href="/terms" style={{marginRight: 15}}>Terms</a>
         <a href="/privacy" style={{marginRight: 15}}>Privacy</a>
         <a href="/contact">Contact</a>
+        <a href="/generator">Generator</a>
       </div> 
     </div>
   );
