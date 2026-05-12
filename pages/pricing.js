@@ -10,7 +10,7 @@ export default function Pricing() {
 
       <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:30}}>
         <h2>Starter</h2>
-        <p style={{fontSize:22}}><b>€9.99 / month</b></p>
+        <p style={{fontSize:22}}><b>£9.99 / month</b></p>
         <p style={{color: "#555", marginBottom: "15px"}}>Access for 30 days</p>
         <ul>
           <li>Up to 30 documents per month</li>
@@ -30,13 +30,13 @@ export default function Pricing() {
             marginTop:10
           }}
         >
-          Buy Starter — €9.99
+          Buy Starter —  £9.99
         </a>
       </div>
 
       <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:20}}>
         <h2>Pro</h2>
-        <p style={{fontSize:22}}><b>€19.99 / month</b></p>
+        <p style={{fontSize:22}}><b> £29.99 / month</b></p>
         <p style={{color: "#555", marginBottom: "15px"}}>Access for 30 days</p>
         <ul>
           <li>Unlimited documents</li>
@@ -56,13 +56,13 @@ export default function Pricing() {
             marginTop:10
           }}
         >
-          Buy Pro — €19.99
+          Buy Pro —  £29.99
         </a>
       </div>
 
       <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:20}}>
         <h2>Business</h2>
-        <p style={{fontSize:22}}><b>€49.99 / month</b></p>
+        <p style={{fontSize:22}}><b> £59.99 / month</b></p>
         <p style={{color: "#555", marginBottom: "15px"}}>Access for 30 days</p>
         <ul>
           <li>Unlimited documents</li>
@@ -83,7 +83,7 @@ export default function Pricing() {
             marginTop:10
           }}
         >
-          Buy Business — €49.99
+          Buy Business —  £59.99
         </a>
       </div>
 
