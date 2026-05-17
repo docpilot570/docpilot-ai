@@ -61,17 +61,16 @@ export default function Pricing() {
       </div>
 
       <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:20}}>
-        <h2>Business</h2>
-        <p style={{fontSize:22}}><b> £59.99 / month</b></p>
+        <h2>Pro</h2>
+        <p style={{fontSize:22}}><b>£19.99 / month</b></p>
         <p style={{color: "#555", marginBottom: "15px"}}>Access for 30 days</p>
         <ul>
           <li>Unlimited documents</li>
           <li>Priority processing</li>
-          <li>Premium templates</li>
-          <li>Business support</li>
+          <li>Advanced templates</li>
         </ul>
         <a 
-          href="https://payhip.com/order?link=DWVGs&pricing_plan=N9G84VVLGV"
+          href="https://payhip.com/order?link=DWVGs&pricing_plan=20zAXXvwWr"
           style={{
             display: "inline-block",
             padding:"12px 24px", 
@@ -83,7 +82,34 @@ export default function Pricing() {
             marginTop:10
           }}
         >
-          Buy Business —  £59.99
+          Buy Pro — £29.99
+        </a>
+      </div>
+
+      <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:20}}>
+        <h2>Business</h2>
+        <p style={{fontSize:22}}><b>£49.99 / month</b></p>
+        <p style={{color: "#555", marginBottom: "15px"}}>Access for 30 days</p>
+        <ul>
+          <li>Unlimited documents</li>
+          <li>Priority processing</li>
+          <li>Premium templates</li>
+          <li>Business support</li>
+        </ul>
+        <a 
+          href="https://payhip.com/order?link=DWVGs&pricing_plan=nLWRaagvGa"
+          style={{
+            display: "inline-block",
+            padding:"12px 24px", 
+            fontSize:16, 
+            backgroundColor:"#4CAF50", 
+            color:"white", 
+            textDecoration:"none",
+            borderRadius:6,
+            marginTop:10
+          }}
+        >
+          Buy Business — £59.99
         </a>
       </div>
 
