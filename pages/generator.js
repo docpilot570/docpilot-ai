@@ -22,25 +22,61 @@ export default function Generator() {
   }
 
   function generateText() {
-    // ... (твой текущий код generateText остаётся без изменений)
-    if (docType === "nda") {
-      return `UK NDA AGREEMENT\n\nThis Non-Disclosure Agreement ("Agreement") is made between:\nDisclosing Party: ${form.clientName}\nReceiving Party: ${form.freelancerName}\n\nProject: \( {form.projectTitle}\n\nConfidential Information:\n \){form.confidentialInfo}\n\nGoverning Law: ${form.governingLaw}\n\nThis document is provided for informational purposes only and does not constitute legal advice.`;
-    }
-    // ... остальные условия (sow, agreement, latepayment) оставь как было
-    if (docType === "sow") {
-      return `STATEMENT OF WORK (SOW)\n\nClient: ${form.clientName}\nContractor: ${form.freelancerName}\n\nProject: \( {form.projectTitle}\n\nScope of Work:\n \){form.scope}\n\nDeadlines / Deliverables:\n\( {form.deadlines}\n\nPayment: £ \){form.paymentAmount}\nPayment Terms: ${form.paymentTerms} days\n\nGoverning Law: ${form.governingLaw}\n\nThis document is provided for informational purposes only and does not constitute legal advice.`;
-    }
-    // Добавь остальные if по аналогии, если нужно
+    const date = new Date().toLocaleDateString('en-GB');
 
-    return "";
+    if (docType === "nda") {
+      return `UK NDA AGREEMENT
+
+Date: ${date}
+
+This Non-Disclosure Agreement ("Agreement") is made between:
+
+Disclosing Party: ${form.clientName || "[Client Name]"}
+Receiving Party: ${form.freelancerName || "[Your Name]"}
+
+Project: ${form.projectTitle || "[Project Title]"}
+
+Confidential Information:
+${form.confidentialInfo || "[Describe confidential information]"}
+
+Governing Law: ${form.governingLaw}
+
+This document is provided for informational purposes only and does not constitute legal advice.`;
+    }
+
+    if (docType === "sow") {
+      return `STATEMENT OF WORK (SOW)
+
+Date: ${date}
+
+Client: ${form.clientName || "[Client Name]"}
+Contractor: ${form.freelancerName || "[Your Name]"}
+
+Project: ${form.projectTitle || "[Project Title]"}
+
+Scope of Work:
+${form.scope || "[Describe scope of work]"}
+
+Deadlines / Deliverables:
+${form.deadlines || "[List deadlines]"}
+
+Payment: £${form.paymentAmount || "0"}
+Payment Terms: ${form.paymentTerms} days
+
+Governing Law: ${form.governingLaw}
+
+This document is provided for informational purposes only and does not constitute legal advice.`;
+    }
+
+    // Добавь остальные типы документов по аналогии при необходимости
+    return "Document template is under development.";
   }
 
   const generated = generateText();
 
-  // Функция скачивания DOCX
   function downloadDocx() {
-    if (!generated) {
-      alert("Сначала сгенерируй документ");
+    if (!generated.trim()) {
+      alert("Сначала заполните форму и сгенерируйте документ");
       return;
     }
 
@@ -60,7 +96,7 @@ export default function Generator() {
       <h1 style={{ fontSize: 32 }}>DocPilot AI Generator (UK)</h1>
       <p>Create UK freelance documents in minutes.</p>
 
-      {/* ... весь твой текущий код с select и inputs остаётся ... */}
+      {/* ... весь твой код с select, input и textarea остаётся тем же ... */}
 
       <h2 style={{ marginTop: 40 }}>Generated document</h2>
 
@@ -69,10 +105,12 @@ export default function Generator() {
         readOnly
         style={{
           width: "100%",
-          padding: 10,
+          padding: 15,
           marginTop: 10,
-          minHeight: 250,
-          background: "#f4f4f4",
+          minHeight: 300,
+          background: "#f8f9fa",
+          fontSize: "15px",
+          lineHeight: "1.6"
         }}
       />
 
@@ -80,14 +118,13 @@ export default function Generator() {
         <button 
           onClick={downloadDocx}
           style={{
-            padding: "12px 24px",
-            fontSize: "16px",
+            padding: "14px 28px",
+            fontSize: "17px",
             backgroundColor: "#4CAF50",
             color: "white",
             border: "none",
-            borderRadius: "6px",
-            cursor: "pointer",
-            marginRight: "10px"
+            borderRadius: "8px",
+            cursor: "pointer"
           }}
         >
           📥 Download as DOCX
