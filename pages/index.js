@@ -19,7 +19,7 @@ export default function Home() {
       </h1>
 
       <p style={{ textAlign: "center", fontSize: 18, marginTop: 0 }}>
-        Business documents and reports in 5 minutes
+        UK freelancer contracts and business documents in 5 minutes
       </p>
 
       <div style={{ textAlign: "center", marginTop: 30 }}>
@@ -29,9 +29,26 @@ export default function Home() {
               padding: "14px 28px",
               fontSize: 18,
               cursor: "pointer",
+              marginRight: 12,
             }}
           >
             Try Demo
+          </button>
+        </a>
+
+        <a href="/generator">
+          <button
+            style={{
+              padding: "14px 28px",
+              fontSize: 18,
+              cursor: "pointer",
+              background: "#4CAF50",
+              color: "white",
+              border: "none",
+              borderRadius: 6,
+            }}
+          >
+            UK Freelancer Generator (DOCX)
           </button>
         </a>
       </div>
@@ -46,25 +63,29 @@ export default function Home() {
       >
         <h2>What is DocPilot AI?</h2>
         <p>
-          DocPilot AI is an online service that helps you generate business
-          documents using artificial intelligence. You can create contracts,
-          invoices, business proposals, letters, reports and more.
+          DocPilot AI is an online service that helps freelancers and sole
+          traders generate UK business documents in minutes.
+        </p>
+
+        <p>
+          Includes: UK NDA, Statement of Work (SOW), Freelance Service Agreement
+          (IR35-friendly clauses), Late Payment Demand Letter.
         </p>
 
         <h2>How it works</h2>
         <ol>
           <li>Select document type</li>
           <li>Enter your details</li>
-          <li>Generate a ready-to-use document</li>
+          <li>Download as DOCX</li>
         </ol>
 
-        <h2>Supported languages</h2>
-        <p>English, Ukrainian, Polish, German, French</p>
+        <h2>Supported markets</h2>
+        <p>United Kingdom (England & Wales / Scotland)</p>
       </div>
 
       <div style={{ marginTop: 50 }}>
         <h2>Pricing</h2>
-        <p>Payment integration via Payhip is ready. Choose your plan below.</p>
+        <p>Choose your plan to unlock premium UK freelancer templates.</p>
         <p>
           <a href="/pricing">View pricing plans</a>
         </p>
@@ -86,14 +107,7 @@ export default function Home() {
           Pricing
         </a>
 
-        <a
-          href="/dashboard"
-          style={{
-            ...linkStyle,
-            fontWeight: "bold",
-            color: "#4CAF50",
-          }}
-        >
+        <a href="/dashboard" style={linkStyle}>
           Dashboard
         </a>
 
