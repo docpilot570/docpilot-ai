@@ -29,25 +29,40 @@ export default function Generator() {
 
     if (docType === "nda") {
       return `
-UK NDA AGREEMENT
+NON-DISCLOSURE AGREEMENT (NDA)
 
 Date: ${today}
 
 This Non-Disclosure Agreement ("Agreement") is made between:
 
-Disclosing Party: ${form.clientName || "[Client Name]"}
-Receiving Party: ${form.freelancerName || "[Your Name]"}
+**Disclosing Party:** ${form.clientName || "[Client Name]"}
+**Receiving Party:** ${form.freelancerName || "[Freelancer Name]"}
 
-Project: ${form.projectTitle || "[Project Title]"}
+**Project:** ${form.projectTitle || "[Project Title]"}
 
-Confidential Information:
-${form.confidentialInfo || "[Describe confidential information]"}
+**1. Definition of Confidential Information**
+The Receiving Party may receive confidential information relating to the Project, including but not limited to: 
+${form.confidentialInfo || "business strategies, technical data, client lists, financial information, trade secrets and any other proprietary information."}
 
-The Receiving Party agrees not to disclose any Confidential Information without written consent.
+**2. Obligations of the Receiving Party**
+The Receiving Party agrees to:
+• Keep all Confidential Information strictly confidential;
+• Not disclose it to any third party without prior written consent;
+• Use it solely for the purpose of the Project;
+• Apply the same security measures as for its own confidential information.
 
-Governing Law: ${form.governingLaw}
+**3. Duration**
+This Agreement shall remain in force for a period of 5 (five) years from the date of last disclosure.
 
-DISCLAIMER: This document is provided for informational purposes only and does not constitute legal advice.
+**4. Governing Law**
+This Agreement shall be governed by and construed in accordance with the laws of ${form.governingLaw}.
+
+**5. Entire Agreement**
+This Agreement constitutes the entire agreement between the parties.
+
+IN WITNESS WHEREOF, the Parties have executed this Agreement on the date first above written.
+
+DISCLAIMER: This is an AI-generated template for informational purposes only. It does not constitute legal advice. We recommend review by a qualified solicitor.
       `.trim();
     }
 
@@ -57,87 +72,111 @@ STATEMENT OF WORK (SOW)
 
 Date: ${today}
 
-Client: ${form.clientName || "[Client Name]"}
-Contractor: ${form.freelancerName || "[Your Name]"}
+**Client:** ${form.clientName || "[Client Name]"}
+**Contractor:** ${form.freelancerName || "[Freelancer Name]"}
 
-Project: ${form.projectTitle || "[Project Title]"}
+**Project Title:** ${form.projectTitle || "[Project Title]"}
 
-Scope of Work:
-${form.scope || "[Describe scope of work]"}
+**1. Scope of Work**
+The Contractor shall provide the following services:
+${form.scope || "[Please describe the scope of work in detail]"}
 
-Deliverables / Deadlines:
-${form.deadlines || "[Describe deadlines and deliverables]"}
+**2. Deliverables and Schedule**
+${form.deadlines || "[List all key deliverables and deadlines]"}
 
-Payment:
-Amount: £${form.paymentAmount || "[Amount]"}
-Payment Terms: ${form.paymentTerms} days
+**3. Payment Terms**
+Total Contract Value: £${form.paymentAmount || "[Amount]"}
+Payment due within ${form.paymentTerms} days of receipt of a valid invoice.
 
-Governing Law: ${form.governingLaw}
+**4. Acceptance**
+All deliverables shall be deemed accepted if no written rejection is received within 7 business days.
 
-DISCLAIMER: This document is provided for informational purposes only and does not constitute legal advice.
+**5. Governing Law**
+This Statement of Work is governed by the laws of ${form.governingLaw}.
+
+Agreed:
+
+Client Signature: ______________________________     Date: ____________
+Contractor Signature: _________________________     Date: ____________
+
+DISCLAIMER: This is an AI-generated template. Professional legal review is recommended.
       `.trim();
     }
 
     if (docType === "agreement") {
       return `
-FREELANCE SERVICE AGREEMENT (UK)
+FREELANCE SERVICE AGREEMENT
 
 Date: ${today}
 
-This Agreement is made between:
+**Parties:**
+**Client:** ${form.clientName || "[Client Name]"}
+**Independent Contractor:** ${form.freelancerName || "[Freelancer Name]"}
 
-Client: ${form.clientName || "[Client Name]"}
-Independent Contractor: ${form.freelancerName || "[Your Name]"}
+**1. Services**
+The Contractor agrees to provide the services described below:
+${form.scope || "[Detailed description of services]"}
 
-Project: ${form.projectTitle || "[Project Title]"}
+**2. Term**
+This Agreement commences on the date hereof and continues until the services are completed or terminated.
 
-Industry / Activity:
-${form.scope || "[Describe industry / activity]"}
+**3. Payment**
+Total Fee: £${form.paymentAmount || "[Amount]"}
+Invoices shall be paid within ${form.paymentTerms} days.
 
-Project Tasks:
-${form.scope || "[Describe project tasks]"}
+**4. Independent Contractor Status**
+The Contractor is an independent contractor and not an employee of the Client.
 
-Substitution Clause (IR35-related):
-${form.substitutionClause || "[Describe substitution clause]"}
+**5. Substitution / IR35 Clause**
+The Contractor retains the right to provide a substitute of equal skill and experience subject to the Client’s reasonable approval.
+${form.substitutionClause || "The Contractor is free to determine their own working methods and hours."}
 
-Payment:
-Amount: £${form.paymentAmount || "[Amount]"}
-Payment Terms: ${form.paymentTerms} days
+**6. Intellectual Property**
+Upon full payment, all intellectual property rights in the deliverables shall belong to the Client.
 
-The Contractor is engaged as an independent contractor and not as an employee.
+**7. Governing Law**
+This Agreement shall be governed by the laws of ${form.governingLaw}.
 
-Governing Law: ${form.governingLaw}
+**Signatures:**
 
-IMPORTANT NOTE: This contract includes contractor-style clauses but does not guarantee IR35 compliance.
+Client: _______________________________     Date: ___________
+Contractor: ___________________________     Date: ___________
 
-DISCLAIMER: This document is provided for informational purposes only and does not constitute legal advice.
+DISCLAIMER: This template is designed to support IR35-friendly arrangements. It is strongly recommended to seek professional legal and tax advice.
       `.trim();
     }
 
     if (docType === "latepayment") {
       return `
-LATE PAYMENT DEMAND LETTER (UK)
+FINAL DEMAND FOR OUTSTANDING PAYMENT
 
 Date: ${today}
 
-To: ${form.clientName || "[Client Name]"}
-From: ${form.freelancerName || "[Your Name]"}
+**To:** ${form.clientName || "[Client Name]"}
 
-Invoice Number: ${form.invoiceNumber || "[Invoice Number]"}
-Outstanding Amount: £${form.debtAmount || "[Outstanding Amount]"}
+**From:** ${form.freelancerName || "[Your Name]"}
+
+**Invoice No:** ${form.invoiceNumber || "[Invoice Number]"}
+**Amount Due:** £${form.debtAmount || "[Amount]"}
 
 Dear ${form.clientName || "[Client Name]"},
 
-This is a formal reminder that payment for invoice ${form.invoiceNumber || "[Invoice Number]"} remains outstanding.
+Despite previous reminders, the above invoice remains unpaid.
 
-Please arrange payment of £${form.debtAmount || "[Amount]"} within 7 days.
+This is a **final demand**. You are required to settle the outstanding amount of **£${form.debtAmount}** in full within **7 days** of the date of this letter.
 
-If payment is not received, I may pursue further action including debt recovery procedures.
+Should payment not be received by this deadline, I will have no choice but to:
+• Engage a debt collection agency
+• Commence legal proceedings to recover the debt plus statutory interest and costs
+• Report the debt to credit reference agencies
 
-Sincerely,
+Please make immediate payment to avoid further action.
+
+Yours sincerely,
+
 ${form.freelancerName || "[Your Name]"}
 
-DISCLAIMER: This document is provided for informational purposes only and does not constitute legal advice.
+DISCLAIMER: This is a template late payment demand letter for informational purposes. It does not constitute formal legal advice.
       `.trim();
     }
 
@@ -168,23 +207,16 @@ DISCLAIMER: This document is provided for informational purposes only and does n
     });
 
     const blob = await Packer.toBlob(doc);
-    saveAs(blob, `docpilot-${docType}.docx`);
+    saveAs(blob, `DocPilot-\( {docType.toUpperCase()}- \){new Date().toISOString().slice(0,10)}.docx`);
   }
 
   return (
-    <div
-      style={{
-        maxWidth: 900,
-        margin: "60px auto",
-        padding: 20,
-        fontFamily: "Arial",
-      }}
-    >
+    <div style={{maxWidth:900, margin:"60px auto", padding:20, fontFamily:"Arial"}}>
       <h1 style={{ fontSize: 42 }}>DocPilot AI Generator (UK)</h1>
-      <p>Create UK freelance documents in minutes.</p>
+      <p>Create professional UK freelance documents in minutes.</p>
 
       <label style={{ display: "block", marginTop: 20 }}>
-        <b>Select document:</b>
+        <b>Select document type:</b>
       </label>
 
       <select
@@ -192,182 +224,58 @@ DISCLAIMER: This document is provided for informational purposes only and does n
         onChange={(e) => setDocType(e.target.value)}
         style={{ padding: 12, marginTop: 10, width: "100%" }}
       >
-        <option value="nda">UK NDA (Non-Disclosure Agreement)</option>
-        <option value="sow">Statement of Work (SOW)</option>
-        <option value="agreement">Freelance Service Agreement (IR35-friendly)</option>
+        <option value="nda">NDA - Non-Disclosure Agreement</option>
+        <option value="sow">SOW - Statement of Work</option>
+        <option value="agreement">Freelance Service Agreement (IR35 friendly)</option>
         <option value="latepayment">Late Payment Demand Letter</option>
       </select>
 
       <h2 style={{ marginTop: 30 }}>Fill details</h2>
 
-      <input
-        name="freelancerName"
-        placeholder="Your name (Freelancer / Contractor)"
-        value={form.freelancerName}
-        onChange={handleChange}
-        style={{ width: "100%", padding: 12, marginTop: 10 }}
-      />
+      <input name="freelancerName" placeholder="Your name (Freelancer)" value={form.freelancerName} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10}} />
+      <input name="clientName" placeholder="Client name" value={form.clientName} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10}} />
+      <input name="projectTitle" placeholder="Project title" value={form.projectTitle} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10}} />
 
-      <input
-        name="clientName"
-        placeholder="Client name"
-        value={form.clientName}
-        onChange={handleChange}
-        style={{ width: "100%", padding: 12, marginTop: 10 }}
-      />
+      <textarea name="scope" placeholder="Scope of work / tasks" value={form.scope} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10, minHeight:80}} />
+      <textarea name="deadlines" placeholder="Deadlines and deliverables" value={form.deadlines} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10, minHeight:80}} />
+      <textarea name="confidentialInfo" placeholder="Confidential information (for NDA)" value={form.confidentialInfo} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10, minHeight:80}} />
+      <textarea name="substitutionClause" placeholder="Substitution / IR35 details" value={form.substitutionClause} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10, minHeight:80}} />
 
-      <input
-        name="projectTitle"
-        placeholder="Project title"
-        value={form.projectTitle}
-        onChange={handleChange}
-        style={{ width: "100%", padding: 12, marginTop: 10 }}
-      />
+      <input name="paymentAmount" placeholder="Payment amount (£)" value={form.paymentAmount} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10}} />
+      <input name="invoiceNumber" placeholder="Invoice number (for Late Payment)" value={form.invoiceNumber} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10}} />
+      <input name="debtAmount" placeholder="Outstanding amount (£)" value={form.debtAmount} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10}} />
 
-      <textarea
-        name="scope"
-        placeholder="Scope / tasks / description"
-        value={form.scope}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="deadlines"
-        placeholder="Deadlines / deliverables schedule (for SOW)"
-        value={form.deadlines}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="substitutionClause"
-        placeholder="Substitution clause details (IR35-related)"
-        value={form.substitutionClause}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="confidentialInfo"
-        placeholder="Confidential information definition (for NDA)"
-        value={form.confidentialInfo}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <input
-        name="paymentAmount"
-        placeholder="Payment amount (£)"
-        value={form.paymentAmount}
-        onChange={handleChange}
-        style={{ width: "100%", padding: 12, marginTop: 10 }}
-      />
-
-      <select
-        name="paymentTerms"
-        value={form.paymentTerms}
-        onChange={handleChange}
-        style={{ width: "100%", padding: 12, marginTop: 10 }}
-      >
+      <select name="paymentTerms" value={form.paymentTerms} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10}}>
         <option value="7">7 days</option>
         <option value="14">14 days</option>
         <option value="30">30 days</option>
       </select>
 
-      <select
-        name="governingLaw"
-        value={form.governingLaw}
-        onChange={handleChange}
-        style={{ width: "100%", padding: 12, marginTop: 10 }}
-      >
+      <select name="governingLaw" value={form.governingLaw} onChange={handleChange} style={{width:"100%", padding:12, marginTop:10}}>
         <option value="England & Wales">England & Wales</option>
         <option value="Scotland">Scotland</option>
       </select>
-
-      <input
-        name="invoiceNumber"
-        placeholder="Invoice number (for Late Payment Letter)"
-        value={form.invoiceNumber}
-        onChange={handleChange}
-        style={{ width: "100%", padding: 12, marginTop: 10 }}
-      />
-
-      <input
-        name="debtAmount"
-        placeholder="Outstanding amount (£)"
-        value={form.debtAmount}
-        onChange={handleChange}
-        style={{ width: "100%", padding: 12, marginTop: 10 }}
-      />
 
       <h2 style={{ marginTop: 40 }}>Generated document</h2>
 
       <textarea
         value={generated}
         readOnly
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 250,
-          background: "#f4f4f4",
-          fontFamily: "Courier New",
-        }}
+        style={{width:"100%", padding:12, marginTop:10, minHeight:300, background:"#f4f4f4", fontFamily:"Courier New", whiteSpace:"pre-wrap"}}
       />
 
       <button
         onClick={downloadDocx}
-        style={{
-          padding: "14px 22px",
-          fontSize: 16,
-          cursor: "pointer",
-          marginTop: 15,
-          background: "#4CAF50",
-          color: "#fff",
-          border: "none",
-          borderRadius: 8,
-        }}
+        style={{padding:"14px 28px", fontSize:18, cursor:"pointer", marginTop:20, background:"#4CAF50", color:"#fff", border:"none", borderRadius:8}}
       >
         📥 Download as DOCX
       </button>
 
-      <p style={{ marginTop: 20, fontSize: 14, color: "#666" }}>
-        Disclaimer: This tool provides document templates for informational
-        purposes only and does not constitute legal advice.
-      </p>
-
-      <p style={{ marginTop: 15 }}>
-        <a href="/">← Back to Home</a>
+      <p style={{marginTop:20, fontSize:14, color:"#666"}}>
+        Disclaimer: These are professional AI-generated templates. They are for informational purposes only and do not constitute legal advice. We recommend review by a qualified solicitor.
       </p>
     </div>
   );
 }
 
-    
-
-
-
-      
-       
-          
+   
