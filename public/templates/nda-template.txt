@@ -1,0 +1,31 @@
+UK NDA AGREEMENT
+
+Date: {{date}}
+
+Disclosing Party: {{clientName}}
+
+Receiving Party: {{freelancerName}}
+
+Project: {{projectTitle}}
+
+1. Confidential Information
+The parties agree to keep confidential all information exchanged during the project.
+
+2. Non-Disclosure
+The receiving party shall not disclose confidential information to third parties.
+
+3. Use of Information
+The information may only be used for the purposes of the project.
+
+4. Governing Law
+This Agreement shall be governed by the laws of England and Wales.
+
+Signed:
+
+____________________
+
+Disclosing Party
+
+____________________
+
+Receiving Party
