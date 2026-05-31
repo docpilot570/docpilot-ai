@@ -25,179 +25,235 @@ export default function Generator() {
   }
 
   function generateText() {
-    const today = new Date().toLocaleDateString("en-GB");
+  const today = new Date().toLocaleDateString("en-GB");
 
-    if (docType === "nda") {
-      return `
+  if (docType === "nda") {
+    return `
 NON-DISCLOSURE AGREEMENT (NDA)
 
 Date: ${today}
 
-This Non-Disclosure Agreement (the "Agreement") is entered into by and between:
+Disclosing Party:
+${form.clientName || "[Client Name]"}
 
-**Disclosing Party:** ${form.clientName || "[Client Name]"}
-**Receiving Party:** ${form.freelancerName || "[Freelancer Name]"}
+Receiving Party:
+${form.freelancerName || "[Freelancer Name]"}
 
-**Project:** ${form.projectTitle || "[Project Title]"}
+Project:
+${form.projectTitle || "[Project Title]"}
 
-**1. Confidential Information**
-"Confidential Information" means any and all information disclosed by the Disclosing Party to the Receiving Party, whether orally, in writing or by any other means, including but not limited to: business plans, financial data, client lists, technical information, trade secrets, know-how, and any other proprietary information.
-\( {form.confidentialInfo ? `\nSpecific Confidential Information includes:\n \){form.confidentialInfo}` : ''}
+1. CONFIDENTIAL INFORMATION
 
-**2. Obligations**
-The Receiving Party agrees that it shall:
-• Hold all Confidential Information in strict confidence;
-• Not disclose it to any third party without the prior written consent of the Disclosing Party;
-• Use the Confidential Information solely for the purpose of the Project;
-• Protect the Confidential Information with at least the same degree of care as it uses for its own most valuable information.
+"Confidential Information" means all commercial, technical, financial, operational and proprietary information disclosed during the Project.
 
-**3. Exceptions**
-This Agreement shall not apply to information which is publicly known, already known to the Receiving Party, or independently developed.
+${form.confidentialInfo || "[Insert confidential information details]"}
 
-**4. Return of Information**
-Upon request or upon termination of the Project, the Receiving Party shall promptly return or destroy all Confidential Information.
+2. OBLIGATIONS
 
-**5. Term**
-This Agreement shall remain in effect for a period of **5 years** from the date of last disclosure of Confidential Information.
+The Receiving Party agrees to:
 
-**6. Governing Law**
-This Agreement shall be governed by and construed in accordance with the laws of ${form.governingLaw}.
+- Keep all Confidential Information strictly confidential;
+- Use Confidential Information only for the Project;
+- Not disclose Confidential Information without written consent;
+- Take reasonable security measures to protect Confidential Information.
 
-**7. Remedies**
-The parties agree that breach of this Agreement may cause irreparable harm and that the Disclosing Party shall be entitled to seek injunctive relief.
+3. EXCEPTIONS
 
-IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first above written.
+This Agreement does not apply to information that:
 
-DISCLAIMER: This is an AI-generated professional template. It does not constitute legal advice. It is strongly recommended to have this document reviewed by a qualified solicitor.
-      `.trim();
-    }
+- Is publicly available;
+- Was lawfully obtained from a third party;
+- Was already known before disclosure;
+- Was independently developed.
 
-    if (docType === "sow") {
-      return `
+4. RETURN OF INFORMATION
+
+Upon request, all Confidential Information shall be returned or permanently deleted.
+
+5. TERM
+
+This Agreement remains effective for five (5) years from the date of disclosure.
+
+6. GOVERNING LAW
+
+This Agreement shall be governed by the laws of ${form.governingLaw}.
+
+7. REMEDIES
+
+The parties acknowledge that breach of this Agreement may cause irreparable harm and entitle the Disclosing Party to injunctive relief.
+
+SIGNATURES
+
+Client: ______________________________
+
+Contractor: __________________________
+
+DISCLAIMER:
+This template is provided for informational purposes only and does not constitute legal advice.
+`.trim();
+  }
+
+  if (docType === "sow") {
+    return `
 STATEMENT OF WORK (SOW)
 
 Date: ${today}
 
-**Client:** ${form.clientName || "[Client Name]"}
-**Contractor:** ${form.freelancerName || "[Freelancer Name]"}
+Client:
+${form.clientName || "[Client Name]"}
 
-**Project Title:** ${form.projectTitle || "[Project Title]"}
+Contractor:
+${form.freelancerName || "[Freelancer Name]"}
 
-**1. Background**
-This Statement of Work is issued pursuant to the Freelance Service Agreement between the parties and defines the specific services, deliverables, and commercial terms for the Project.
+Project:
+${form.projectTitle || "[Project Title]"}
 
-**2. Scope of Services**
-The Contractor shall perform the following services:
-${form.scope || "[Please describe the full scope of work in detail]"}
+1. SCOPE OF SERVICES
 
-**3. Deliverables and Timeline**
-The Contractor shall deliver the following:
-${form.deadlines || "[List all deliverables with expected completion dates and milestones]"}
+${form.scope || "[Describe services in detail]"}
 
-**4. Client Obligations**
-The Client shall provide timely feedback, necessary information, and access required for the successful completion of the Project.
+2. DELIVERABLES AND DEADLINES
 
-**5. Payment Terms**
-Total Contract Value: **£${form.paymentAmount || "[Amount]"}**
-Payment shall be made within **${form.paymentTerms} days** of receipt of a correctly issued invoice.
+${form.deadlines || "[Describe deliverables and milestones]"}
 
-**6. Acceptance**
-Deliverables shall be reviewed by the Client within 7 business days. If no written rejection is received, the deliverable shall be deemed accepted.
+3. PAYMENT
 
-**7. Governing Law**
+Contract Value: £${form.paymentAmount || "[Amount]"}
+
+Payment Terms:
+${form.paymentTerms} days from invoice date.
+
+4. CLIENT RESPONSIBILITIES
+
+The Client shall provide all necessary information, approvals and feedback required for successful completion of the Project.
+
+5. ACCEPTANCE
+
+Deliverables shall be deemed accepted unless written objections are provided within 7 business days.
+
+6. GOVERNING LAW
+
 This Statement of Work shall be governed by the laws of ${form.governingLaw}.
 
-**Signatures:**
+SIGNATURES
 
-Client: _______________________________ Date: ___________
-Contractor: ___________________________ Date: ___________
+Client: ______________________________
 
-DISCLAIMER: This is an AI-generated professional template. Professional legal review is recommended.
-      `.trim();
-    }
+Contractor: __________________________
 
-    if (docType === "agreement") {
-      return `
+DISCLAIMER:
+This template is provided for informational purposes only and does not constitute legal advice.
+`.trim();
+  }
+
+  if (docType === "agreement") {
+    return `
 FREELANCE SERVICE AGREEMENT
 
 Date: ${today}
 
-**Parties:**
-**Client:** ${form.clientName || "[Client Name]"}
-**Independent Contractor:** ${form.freelancerName || "[Freelancer Name]"}
+Client:
+${form.clientName || "[Client Name]"}
 
-**1. Services**
-The Contractor agrees to provide the following professional services:
-${form.scope || "[Detailed description of services to be provided]"}
+Independent Contractor:
+${form.freelancerName || "[Freelancer Name]"}
 
-**2. Term**
-This Agreement commences on the date of signing and continues until the services are completed or the Agreement is terminated.
+Project:
+${form.projectTitle || "[Project Title]"}
 
-**3. Payment**
-Total Fee: **£${form.paymentAmount || "[Amount]"}**
-Invoices shall be paid by the Client within **${form.paymentTerms} days** of receipt.
+1. SERVICES
 
-**4. Independent Contractor Status**
-The Contractor is engaged as an independent contractor and not as an employee. The Contractor shall be responsible for their own taxes, National Insurance and VAT (if applicable).
+${form.scope || "[Describe services]"}
 
-**5. Substitution and IR35 Protection**
-The Contractor has the unrestricted right to provide a suitably qualified substitute to perform the Services, subject only to the Client’s reasonable approval. The Contractor is free to determine their own working methods, hours and place of work.
-${form.substitutionClause ? `\nAdditional details: ${form.substitutionClause}` : ''}
+2. CONTRACTOR STATUS
 
-**6. Intellectual Property**
-All intellectual property rights created in the course of the Services shall pass to the Client upon full and final payment.
+The Contractor acts as an independent contractor and not as an employee.
 
-**7. Confidentiality**
-Both parties agree to keep each other’s confidential information secure.
+The Contractor is responsible for their own taxes, National Insurance contributions and VAT obligations where applicable.
 
-**8. Governing Law**
+3. SUBSTITUTION
+
+The Contractor may provide a suitably qualified substitute to perform the Services.
+
+${form.substitutionClause || "[Substitution details]"}
+
+4. PAYMENT
+
+Amount: £${form.paymentAmount || "[Amount]"}
+
+Payment Terms:
+${form.paymentTerms} days.
+
+5. INTELLECTUAL PROPERTY
+
+Upon full payment, intellectual property rights created under this Agreement shall transfer to the Client.
+
+6. CONFIDENTIALITY
+
+Both parties shall maintain confidentiality regarding all non-public information.
+
+7. GOVERNING LAW
+
 This Agreement shall be governed by the laws of ${form.governingLaw}.
 
-**Signatures:**
+IMPORTANT IR35 NOTICE
 
-Client: _______________________________ Date: ___________
-Contractor: ___________________________ Date: ___________
+This template includes contractor-oriented provisions but does not guarantee IR35 compliance.
 
-DISCLAIMER: This template is designed to support IR35-friendly working arrangements. It is strongly recommended to obtain professional legal and tax advice.
-      `.trim();
-    }
+SIGNATURES
 
-    if (docType === "latepayment") {
-      return `
+Client: ______________________________
+
+Contractor: __________________________
+
+DISCLAIMER:
+This template is provided for informational purposes only and does not constitute legal, tax or employment advice.
+`.trim();
+  }
+
+  if (docType === "latepayment") {
+    return `
 FINAL DEMAND FOR PAYMENT
 
 Date: ${today}
 
-**To:** ${form.clientName || "[Client Name]"}
+To:
+${form.clientName || "[Client Name]"}
 
-**From:** ${form.freelancerName || "[Your Name]"}
+From:
+${form.freelancerName || "[Your Name]"}
 
-**Invoice Number:** ${form.invoiceNumber || "[Invoice Number]"}
-**Amount Outstanding:** **£${form.debtAmount || "[Amount]"}**
+Invoice Number:
+${form.invoiceNumber || "[Invoice Number]"}
+
+Outstanding Amount:
+£${form.debtAmount || "[Amount]"}
 
 Dear ${form.clientName || "[Client Name]"},
 
-This is a **Final Demand** for payment of the above invoice, which remains unpaid despite previous reminders.
+Despite previous reminders, payment remains outstanding.
 
-You are hereby required to pay the full outstanding amount of **£${form.debtAmount}** within **7 days** of the date of this letter.
+You are required to pay the outstanding amount of £${form.debtAmount || "[Amount]"} within seven (7) days of the date of this letter.
 
-Should you fail to make payment by this deadline, I will be forced to take further action, which may include:
-• Instructing a debt collection agency
-• Commencing legal proceedings to recover the debt, plus statutory interest and legal costs
-• Reporting the outstanding debt to credit reference agencies
+Failure to pay may result in:
 
-Please make immediate payment to avoid escalation.
+- Debt recovery proceedings;
+- Legal action;
+- Recovery of statutory interest and costs where applicable.
 
-Yours sincerely,
+Please arrange immediate payment to avoid escalation.
+
+Yours faithfully,
 
 ${form.freelancerName || "[Your Name]"}
 
-DISCLAIMER: This is a professional template late payment demand letter. It is for informational purposes only and does not constitute formal legal advice.
-      `.trim();
-    }
-
-    return "";
+DISCLAIMER:
+This template is provided for informational purposes only and does not constitute legal advice.
+`.trim();
   }
+
+  return "";
+}
 
   const generated = generateText();
 
