@@ -33,36 +33,42 @@ NON-DISCLOSURE AGREEMENT (NDA)
 
 Date: ${today}
 
-This Non-Disclosure Agreement ("Agreement") is made between:
+This Non-Disclosure Agreement (the "Agreement") is entered into by and between:
 
 **Disclosing Party:** ${form.clientName || "[Client Name]"}
 **Receiving Party:** ${form.freelancerName || "[Freelancer Name]"}
 
 **Project:** ${form.projectTitle || "[Project Title]"}
 
-**1. Definition of Confidential Information**
-The Receiving Party may receive confidential information relating to the Project, including but not limited to: 
-${form.confidentialInfo || "business strategies, technical data, client lists, financial information, trade secrets and any other proprietary information."}
+**1. Confidential Information**
+"Confidential Information" means any and all information disclosed by the Disclosing Party to the Receiving Party, whether orally, in writing or by any other means, including but not limited to: business plans, financial data, client lists, technical information, trade secrets, know-how, and any other proprietary information.
+\( {form.confidentialInfo ? `\nSpecific Confidential Information includes:\n \){form.confidentialInfo}` : ''}
 
-**2. Obligations of the Receiving Party**
-The Receiving Party agrees to:
-• Keep all Confidential Information strictly confidential;
-• Not disclose it to any third party without prior written consent;
-• Use it solely for the purpose of the Project;
-• Apply the same security measures as for its own confidential information.
+**2. Obligations**
+The Receiving Party agrees that it shall:
+• Hold all Confidential Information in strict confidence;
+• Not disclose it to any third party without the prior written consent of the Disclosing Party;
+• Use the Confidential Information solely for the purpose of the Project;
+• Protect the Confidential Information with at least the same degree of care as it uses for its own most valuable information.
 
-**3. Duration**
-This Agreement shall remain in force for a period of 5 (five) years from the date of last disclosure.
+**3. Exceptions**
+This Agreement shall not apply to information which is publicly known, already known to the Receiving Party, or independently developed.
 
-**4. Governing Law**
+**4. Return of Information**
+Upon request or upon termination of the Project, the Receiving Party shall promptly return or destroy all Confidential Information.
+
+**5. Term**
+This Agreement shall remain in effect for a period of **5 years** from the date of last disclosure of Confidential Information.
+
+**6. Governing Law**
 This Agreement shall be governed by and construed in accordance with the laws of ${form.governingLaw}.
 
-**5. Entire Agreement**
-This Agreement constitutes the entire agreement between the parties.
+**7. Remedies**
+The parties agree that breach of this Agreement may cause irreparable harm and that the Disclosing Party shall be entitled to seek injunctive relief.
 
-IN WITNESS WHEREOF, the Parties have executed this Agreement on the date first above written.
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first above written.
 
-DISCLAIMER: This is an AI-generated template for informational purposes only. It does not constitute legal advice. We recommend review by a qualified solicitor.
+DISCLAIMER: This is an AI-generated professional template. It does not constitute legal advice. It is strongly recommended to have this document reviewed by a qualified solicitor.
       `.trim();
     }
 
@@ -77,29 +83,36 @@ Date: ${today}
 
 **Project Title:** ${form.projectTitle || "[Project Title]"}
 
-**1. Scope of Work**
-The Contractor shall provide the following services:
-${form.scope || "[Please describe the scope of work in detail]"}
+**1. Background**
+This Statement of Work is issued pursuant to the Freelance Service Agreement between the parties and defines the specific services, deliverables, and commercial terms for the Project.
 
-**2. Deliverables and Schedule**
-${form.deadlines || "[List all key deliverables and deadlines]"}
+**2. Scope of Services**
+The Contractor shall perform the following services:
+${form.scope || "[Please describe the full scope of work in detail]"}
 
-**3. Payment Terms**
-Total Contract Value: £${form.paymentAmount || "[Amount]"}
-Payment due within ${form.paymentTerms} days of receipt of a valid invoice.
+**3. Deliverables and Timeline**
+The Contractor shall deliver the following:
+${form.deadlines || "[List all deliverables with expected completion dates and milestones]"}
 
-**4. Acceptance**
-All deliverables shall be deemed accepted if no written rejection is received within 7 business days.
+**4. Client Obligations**
+The Client shall provide timely feedback, necessary information, and access required for the successful completion of the Project.
 
-**5. Governing Law**
-This Statement of Work is governed by the laws of ${form.governingLaw}.
+**5. Payment Terms**
+Total Contract Value: **£${form.paymentAmount || "[Amount]"}**
+Payment shall be made within **${form.paymentTerms} days** of receipt of a correctly issued invoice.
 
-Agreed:
+**6. Acceptance**
+Deliverables shall be reviewed by the Client within 7 business days. If no written rejection is received, the deliverable shall be deemed accepted.
 
-Client Signature: ______________________________     Date: ____________
-Contractor Signature: _________________________     Date: ____________
+**7. Governing Law**
+This Statement of Work shall be governed by the laws of ${form.governingLaw}.
 
-DISCLAIMER: This is an AI-generated template. Professional legal review is recommended.
+**Signatures:**
+
+Client: _______________________________ Date: ___________
+Contractor: ___________________________ Date: ___________
+
+DISCLAIMER: This is an AI-generated professional template. Professional legal review is recommended.
       `.trim();
     }
 
@@ -114,41 +127,44 @@ Date: ${today}
 **Independent Contractor:** ${form.freelancerName || "[Freelancer Name]"}
 
 **1. Services**
-The Contractor agrees to provide the services described below:
-${form.scope || "[Detailed description of services]"}
+The Contractor agrees to provide the following professional services:
+${form.scope || "[Detailed description of services to be provided]"}
 
 **2. Term**
-This Agreement commences on the date hereof and continues until the services are completed or terminated.
+This Agreement commences on the date of signing and continues until the services are completed or the Agreement is terminated.
 
 **3. Payment**
-Total Fee: £${form.paymentAmount || "[Amount]"}
-Invoices shall be paid within ${form.paymentTerms} days.
+Total Fee: **£${form.paymentAmount || "[Amount]"}**
+Invoices shall be paid by the Client within **${form.paymentTerms} days** of receipt.
 
 **4. Independent Contractor Status**
-The Contractor is an independent contractor and not an employee of the Client.
+The Contractor is engaged as an independent contractor and not as an employee. The Contractor shall be responsible for their own taxes, National Insurance and VAT (if applicable).
 
-**5. Substitution / IR35 Clause**
-The Contractor retains the right to provide a substitute of equal skill and experience subject to the Client’s reasonable approval.
-${form.substitutionClause || "The Contractor is free to determine their own working methods and hours."}
+**5. Substitution and IR35 Protection**
+The Contractor has the unrestricted right to provide a suitably qualified substitute to perform the Services, subject only to the Client’s reasonable approval. The Contractor is free to determine their own working methods, hours and place of work.
+${form.substitutionClause ? `\nAdditional details: ${form.substitutionClause}` : ''}
 
 **6. Intellectual Property**
-Upon full payment, all intellectual property rights in the deliverables shall belong to the Client.
+All intellectual property rights created in the course of the Services shall pass to the Client upon full and final payment.
 
-**7. Governing Law**
+**7. Confidentiality**
+Both parties agree to keep each other’s confidential information secure.
+
+**8. Governing Law**
 This Agreement shall be governed by the laws of ${form.governingLaw}.
 
 **Signatures:**
 
-Client: _______________________________     Date: ___________
-Contractor: ___________________________     Date: ___________
+Client: _______________________________ Date: ___________
+Contractor: ___________________________ Date: ___________
 
-DISCLAIMER: This template is designed to support IR35-friendly arrangements. It is strongly recommended to seek professional legal and tax advice.
+DISCLAIMER: This template is designed to support IR35-friendly working arrangements. It is strongly recommended to obtain professional legal and tax advice.
       `.trim();
     }
 
     if (docType === "latepayment") {
       return `
-FINAL DEMAND FOR OUTSTANDING PAYMENT
+FINAL DEMAND FOR PAYMENT
 
 Date: ${today}
 
@@ -156,27 +172,27 @@ Date: ${today}
 
 **From:** ${form.freelancerName || "[Your Name]"}
 
-**Invoice No:** ${form.invoiceNumber || "[Invoice Number]"}
-**Amount Due:** £${form.debtAmount || "[Amount]"}
+**Invoice Number:** ${form.invoiceNumber || "[Invoice Number]"}
+**Amount Outstanding:** **£${form.debtAmount || "[Amount]"}**
 
 Dear ${form.clientName || "[Client Name]"},
 
-Despite previous reminders, the above invoice remains unpaid.
+This is a **Final Demand** for payment of the above invoice, which remains unpaid despite previous reminders.
 
-This is a **final demand**. You are required to settle the outstanding amount of **£${form.debtAmount}** in full within **7 days** of the date of this letter.
+You are hereby required to pay the full outstanding amount of **£${form.debtAmount}** within **7 days** of the date of this letter.
 
-Should payment not be received by this deadline, I will have no choice but to:
-• Engage a debt collection agency
-• Commence legal proceedings to recover the debt plus statutory interest and costs
-• Report the debt to credit reference agencies
+Should you fail to make payment by this deadline, I will be forced to take further action, which may include:
+• Instructing a debt collection agency
+• Commencing legal proceedings to recover the debt, plus statutory interest and legal costs
+• Reporting the outstanding debt to credit reference agencies
 
-Please make immediate payment to avoid further action.
+Please make immediate payment to avoid escalation.
 
 Yours sincerely,
 
 ${form.freelancerName || "[Your Name]"}
 
-DISCLAIMER: This is a template late payment demand letter for informational purposes. It does not constitute formal legal advice.
+DISCLAIMER: This is a professional template late payment demand letter. It is for informational purposes only and does not constitute formal legal advice.
       `.trim();
     }
 
