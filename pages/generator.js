@@ -29,7 +29,7 @@ export default function Generator() {
 
   if (docType === "nda") {
     return `
-NON-DISCLOSURE AGREEMENT (NDA)
+PROFESSIONAL NON-DISCLOSURE AGREEMENT (NDA)
 
 Date: ${today}
 
@@ -42,45 +42,59 @@ ${form.freelancerName || "[Freelancer Name]"}
 Project:
 ${form.projectTitle || "[Project Title]"}
 
-1. CONFIDENTIAL INFORMATION
+1. DEFINITION OF CONFIDENTIAL INFORMATION
 
-"Confidential Information" means all commercial, technical, financial, operational and proprietary information disclosed during the Project.
+"Confidential Information" means all commercial, financial, technical, operational, business, customer, supplier, marketing, software, product, strategic and proprietary information disclosed by either party in connection with the Project.
+
+Specific Confidential Information:
 
 ${form.confidentialInfo || "[Insert confidential information details]"}
 
-2. OBLIGATIONS
+2. PERMITTED DISCLOSURE
 
-The Receiving Party agrees to:
+Confidential Information may only be disclosed to professional advisers, employees, contractors or affiliates who require access for the purposes of the Project and who are bound by confidentiality obligations.
 
-- Keep all Confidential Information strictly confidential;
-- Use Confidential Information only for the Project;
-- Not disclose Confidential Information without written consent;
-- Take reasonable security measures to protect Confidential Information.
+3. OBLIGATIONS
 
-3. EXCEPTIONS
+The Receiving Party shall:
 
-This Agreement does not apply to information that:
+- Keep Confidential Information strictly confidential.
+- Use Confidential Information solely for the Project.
+- Implement reasonable security measures.
+- Prevent unauthorized disclosure.
 
-- Is publicly available;
-- Was lawfully obtained from a third party;
-- Was already known before disclosure;
-- Was independently developed.
+4. DATA PROTECTION
 
-4. RETURN OF INFORMATION
+Both parties shall comply with all applicable UK GDPR and Data Protection Act 2018 requirements when processing personal data.
 
-Upon request, all Confidential Information shall be returned or permanently deleted.
+5. EXCEPTIONS
 
-5. TERM
+This Agreement does not apply to information which:
 
-This Agreement remains effective for five (5) years from the date of disclosure.
+- Is publicly available.
+- Was already known before disclosure.
+- Is received lawfully from a third party.
+- Is independently developed.
 
-6. GOVERNING LAW
+6. RETURN OR DESTRUCTION
+
+Upon request, the Receiving Party shall promptly return, destroy or permanently delete all Confidential Information.
+
+7. SURVIVAL CLAUSE
+
+Confidentiality obligations shall survive termination of the Project and remain effective for five (5) years following the final disclosure.
+
+8. INJUNCTIVE RELIEF
+
+The parties acknowledge that unauthorized disclosure may cause irreparable harm and that injunctive relief may be sought without prejudice to other remedies.
+
+9. ENTIRE AGREEMENT
+
+This Agreement constitutes the entire understanding between the parties regarding confidentiality.
+
+10. GOVERNING LAW
 
 This Agreement shall be governed by the laws of ${form.governingLaw}.
-
-7. REMEDIES
-
-The parties acknowledge that breach of this Agreement may cause irreparable harm and entitle the Disclosing Party to injunctive relief.
 
 SIGNATURES
 
@@ -108,30 +122,47 @@ ${form.freelancerName || "[Freelancer Name]"}
 Project:
 ${form.projectTitle || "[Project Title]"}
 
-1. SCOPE OF SERVICES
+1. PROJECT BACKGROUND
+
+This Statement of Work defines the services, deliverables, commercial arrangements and responsibilities associated with the Project.
+
+2. SCOPE OF SERVICES
 
 ${form.scope || "[Describe services in detail]"}
 
-2. DELIVERABLES AND DEADLINES
+3. DELIVERABLES
 
-${form.deadlines || "[Describe deliverables and milestones]"}
+${form.deadlines || "[Describe deliverables]"}
 
-3. PAYMENT
+4. MILESTONES
+
+Key project milestones shall be agreed between the parties and tracked throughout the Project.
+
+5. ACCEPTANCE CRITERIA
+
+Deliverables shall be deemed accepted unless written rejection is received within seven (7) business days.
+
+6. CHANGE REQUESTS
+
+Any material changes to scope, timeline, deliverables or pricing must be agreed in writing before implementation.
+
+7. CLIENT RESPONSIBILITIES
+
+The Client shall:
+
+- Provide timely information.
+- Provide feedback.
+- Supply necessary access and approvals.
+- Cooperate reasonably with the Contractor.
+
+8. PAYMENT SCHEDULE
 
 Contract Value: £${form.paymentAmount || "[Amount]"}
 
 Payment Terms:
 ${form.paymentTerms} days from invoice date.
 
-4. CLIENT RESPONSIBILITIES
-
-The Client shall provide all necessary information, approvals and feedback required for successful completion of the Project.
-
-5. ACCEPTANCE
-
-Deliverables shall be deemed accepted unless written objections are provided within 7 business days.
-
-6. GOVERNING LAW
+9. GOVERNING LAW
 
 This Statement of Work shall be governed by the laws of ${form.governingLaw}.
 
@@ -148,7 +179,7 @@ This template is provided for informational purposes only and does not constitut
 
   if (docType === "agreement") {
     return `
-FREELANCE SERVICE AGREEMENT
+FREELANCE SERVICE AGREEMENT (IR35-ORIENTED)
 
 Date: ${today}
 
@@ -165,40 +196,62 @@ ${form.projectTitle || "[Project Title]"}
 
 ${form.scope || "[Describe services]"}
 
-2. CONTRACTOR STATUS
+2. INDEPENDENT BUSINESS STATUS
 
-The Contractor acts as an independent contractor and not as an employee.
+The Contractor operates an independent business and is not an employee, worker, partner or agent of the Client.
 
-The Contractor is responsible for their own taxes, National Insurance contributions and VAT obligations where applicable.
+3. RIGHT OF SUBSTITUTION
 
-3. SUBSTITUTION
-
-The Contractor may provide a suitably qualified substitute to perform the Services.
+The Contractor may provide a suitably qualified substitute to perform all or part of the Services.
 
 ${form.substitutionClause || "[Substitution details]"}
 
-4. PAYMENT
+4. NO MUTUALITY OF OBLIGATION
+
+The Client is under no obligation to provide future work and the Contractor is under no obligation to accept future work.
+
+5. CONTRACTOR CONTROL
+
+The Contractor shall determine how, when and where the Services are performed.
+
+6. EQUIPMENT AND INSURANCE
+
+The Contractor shall provide their own equipment and maintain appropriate business insurance where required.
+
+7. TAX RESPONSIBILITY
+
+The Contractor remains solely responsible for taxes, National Insurance contributions and VAT obligations.
+
+8. PAYMENT
 
 Amount: £${form.paymentAmount || "[Amount]"}
 
 Payment Terms:
 ${form.paymentTerms} days.
 
-5. INTELLECTUAL PROPERTY
+9. INTELLECTUAL PROPERTY
 
-Upon full payment, intellectual property rights created under this Agreement shall transfer to the Client.
+Upon receipt of full payment, intellectual property rights created specifically for the Project shall transfer to the Client.
 
-6. CONFIDENTIALITY
+10. CONFIDENTIALITY
 
-Both parties shall maintain confidentiality regarding all non-public information.
+Both parties agree to protect confidential information.
 
-7. GOVERNING LAW
+11. TERMINATION
+
+Either party may terminate this Agreement upon written notice where there is material breach or by mutual agreement.
+
+12. LIMITATION OF LIABILITY
+
+Neither party shall be liable for indirect, consequential or special damages except where prohibited by law.
+
+13. GOVERNING LAW
 
 This Agreement shall be governed by the laws of ${form.governingLaw}.
 
 IMPORTANT IR35 NOTICE
 
-This template includes contractor-oriented provisions but does not guarantee IR35 compliance.
+This template contains provisions commonly associated with independent contractor engagements but does not guarantee IR35 compliance.
 
 SIGNATURES
 
@@ -231,17 +284,28 @@ Outstanding Amount:
 
 Dear ${form.clientName || "[Client Name]"},
 
-Despite previous reminders, payment remains outstanding.
+This letter constitutes a FINAL DEMAND FOR PAYMENT.
 
-You are required to pay the outstanding amount of £${form.debtAmount || "[Amount]"} within seven (7) days of the date of this letter.
+Despite previous reminders, the above invoice remains unpaid.
 
-Failure to pay may result in:
+You are required to pay the outstanding balance of £${form.debtAmount || "[Amount]"} within seven (7) days from the date of this letter.
 
-- Debt recovery proceedings;
-- Legal action;
-- Recovery of statutory interest and costs where applicable.
+STATUTORY INTEREST
 
-Please arrange immediate payment to avoid escalation.
+Where applicable, statutory interest and compensation may be claimed under relevant UK late payment legislation.
+
+FAILURE TO PAY
+
+Failure to make payment may result in:
+
+- Debt recovery proceedings.
+- Referral to a collection agency.
+- Court proceedings.
+- Recovery of interest and costs.
+
+PRE-LEGAL ACTION NOTICE
+
+This correspondence may be relied upon as evidence that reasonable attempts were made to recover the debt before commencing legal proceedings.
 
 Yours faithfully,
 
@@ -254,6 +318,7 @@ This template is provided for informational purposes only and does not constitut
 
   return "";
 }
+
 
   const generated = generateText();
 
