@@ -477,6 +477,22 @@ async function copyDocument() {
         .slice(0, 10)}.docx`
     );
   }
+  function downloadPdf() {
+  const doc = new jsPDF();
+
+  const lines = doc.splitTextToSize(generated, 180);
+
+  doc.setFont("helvetica");
+  doc.setFontSize(11);
+
+  doc.text(lines, 15, 20);
+
+  doc.save(
+    `DocPilot-${docType.toUpperCase()}-${new Date()
+      .toISOString()
+      .slice(0, 10)}.pdf`
+  );
+}
 
   return (
     <div
