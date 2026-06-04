@@ -827,7 +827,23 @@ async function copyDocument() {
       >
         📥 Download DOCX
       </button>
-
+          <button
+  onClick={copyDocument}
+  style={{
+    padding: "14px 28px",
+    fontSize: 18,
+    cursor: "pointer",
+    marginTop: 20,
+    marginLeft: 10,
+    background: "#2196F3",
+    color: "#fff",
+    border: "none",
+    borderRadius: 8,
+  }}
+>
+  📋 Copy Document
+</button>
+      
       <p
         style={{
           marginTop: 20,
