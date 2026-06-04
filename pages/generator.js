@@ -438,7 +438,14 @@ Thank you for considering this proposal.
     return "";
   }
 const generated = generateText();
-
+async function copyDocument() {
+  try {
+    await navigator.clipboard.writeText(generated);
+    alert("Document copied to clipboard");
+  } catch (err) {
+    alert("Failed to copy document");
+  }
+}
   async function downloadDocx() {
     const paragraphs = generated.split("\n").map((line) => {
       return new Paragraph({
