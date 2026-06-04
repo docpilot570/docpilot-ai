@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Document, Packer, Paragraph, TextRun } from "docx";
 import { saveAs } from "file-saver";
+import jsPDF from "jspdf";
 
 export default function Generator() {
   const [docType, setDocType] = useState("nda");
