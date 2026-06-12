@@ -1,51 +1,221 @@
 import { useState } from "react";
-import { Document, Packer, Paragraph, TextRun } from "docx";
+import {
+  Document,
+  Packer,
+  Paragraph,
+  TextRun,
+  HeadingLevel
+} from "docx";
 import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
 
 export default function Generator() {
+
   const [docType, setDocType] = useState("nda");
 
   const [form, setForm] = useState({
+
     freelancerName: "",
-    companyName: "",
-    companyAddress: "",
     clientName: "",
-    clientAddress: "",
     projectTitle: "",
+
     scope: "",
-    deadlines: "",
     deliverables: "",
     milestones: "",
-    confidentialInfo: "",
-    substitutionClause: "",
+
     paymentAmount: "",
     paymentTerms: "14",
+
     governingLaw: "England & Wales",
+
+    confidentialInfo: "",
+
+    substitutionClause: "",
+
     invoiceNumber: "",
-    invoiceDate: "",
-    dueDate: "",
     debtAmount: "",
+
     proposalObjective: "",
     proposalTimeline: "",
     proposalBudget: "",
+
+    invoiceDueDate: "",
+
+    businessAddress: "",
+
   });
 
   function handleChange(e) {
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   }
 
-  function generateText() {
-    const today = new Date().toLocaleDateString("en-GB");
+  function visibleFields() {
 
     if (docType === "nda") {
+      return [
+        "freelancerName",
+        "clientName",
+        "projectTitle",
+        "confidentialInfo"
+      ];
+    }
+
+    if (docType === "sow") {
+      return [
+        "freelancerName",
+        "clientName",
+        "projectTitle",
+        "scope",
+        "deliverables",
+        "milestones",
+        "paymentAmount"
+      ];
+    }
+
+    if (docType === "agreement") {
+      return [
+        "freelancerName",
+        "clientName",
+        "projectTitle",
+        "scope",
+        "substitutionClause",
+        "paymentAmount"
+      ];
+    }
+
+    if (docType === "latepayment") {
+      return [
+        "freelancerName",
+        "clientName",
+        "invoiceNumber",
+        "debtAmount"
+      ];
+    }
+
+    if (docType === "invoice") {
+      return [
+        "freelancerName",
+        "clientName",
+        "invoiceNumber",
+        "paymentAmount",
+        "invoiceDueDate",
+        "businessAddress"
+      ];
+    }
+
+    if (docType === "proposal") {
+      return [
+        "freelancerName",
+        "clientName",
+        "projectTitle",
+        "proposalObjective",
+        "proposalTimeline",
+        "proposalBudget"
+      ];
+    }
+
+    return [];
+  }
+
+  function fieldLabel(name) {
+
+    const labels = {
+
+      freelancerName: "Your Name",
+
+      clientName: "Client Name",
+
+      projectTitle: "Project Title",
+
+      scope: "Scope of Work",
+
+      deliverables: "Deliverables",
+
+      milestones: "Milestones",
+
+      paymentAmount: "Payment Amount (£)",
+
+      confidentialInfo: "Confidential Information",
+
+      substitutionClause: "Substitution Clause",
+
+      invoiceNumber: "Invoice Number",
+
+      debtAmount: "Outstanding Amount",
+
+      proposalObjective: "Proposal Objective",
+
+      proposalTimeline: "Timeline",
+
+      proposalBudget: "Budget",
+
+      invoiceDueDate: "Due Date",
+
+      businessAddress: "Business Address"
+
+    };
+
+    return labels[name];
+  }
+
+  function renderField(field) {
+
+    const textareaFields = [
+      "scope",
+      "deliverables",
+      "milestones",
+      "confidentialInfo",
+      "substitutionClause",
+      "proposalObjective"
+    ];
+
+    if (textareaFields.includes(field)) {
+      return (
+        <textarea
+          name={field}
+          value={form[field]}
+          onChange={handleChange}
+          placeholder={fieldLabel(field)}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 10,
+            minHeight: 90,
+            borderRadius: 8
+          }}
+        />
+      );
+    }
+
+    return (
+      <input
+        name={field}
+        value={form[field]}
+        onChange={handleChange}
+        placeholder={fieldLabel(field)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 10,
+          borderRadius: 8
+        }}
+      />
+    );
+  }
+
+  function generateText() {
+
+    const today = new Date().toLocaleDateString("en-GB");
+if (docType === "nda") {
       return `
 PROFESSIONAL NON-DISCLOSURE AGREEMENT (NDA)
 
 Date: ${today}
+
+PARTIES
 
 Disclosing Party:
 ${form.clientName || "[Client Name]"}
@@ -58,53 +228,52 @@ ${form.projectTitle || "[Project Title]"}
 
 1. DEFINITION OF CONFIDENTIAL INFORMATION
 
-"Confidential Information" means all commercial, financial, technical, strategic, operational, customer, supplier, product, software, marketing and proprietary information disclosed in connection with the Project.
+Confidential Information means all commercial, financial, technical, legal, strategic, software, customer, supplier, operational and proprietary information disclosed in connection with the Project.
 
 Specific Confidential Information:
-
-${form.confidentialInfo || "[Insert confidential information details]"}
+${form.confidentialInfo || "[Insert confidential information]"}
 
 2. PERMITTED DISCLOSURE
 
-Confidential Information may only be disclosed to employees, advisers, consultants or subcontractors who require access for Project purposes and who are bound by confidentiality obligations.
+Confidential Information may only be disclosed to employees, advisers or subcontractors strictly requiring access for execution of the Project and bound by equivalent confidentiality obligations.
 
-3. CONFIDENTIALITY OBLIGATIONS
+3. OBLIGATIONS OF RECEIVING PARTY
 
 The Receiving Party shall:
 
-- Keep information confidential.
-- Use information solely for the Project.
-- Prevent unauthorised disclosure.
-- Apply reasonable security measures.
+- Maintain strict confidentiality
+- Use information solely for Project execution
+- Prevent unauthorized access
+- Apply commercially reasonable security safeguards
 
 4. DATA PROTECTION
 
-Both parties shall comply with UK GDPR and Data Protection Act 2018 requirements.
+Both parties agree to comply with UK GDPR, Data Protection Act 2018 and any applicable privacy legislation.
 
-5. EXCEPTIONS
+5. EXCLUSIONS
 
-This Agreement shall not apply where information:
+This Agreement does not apply to information that:
 
-- Is publicly available.
-- Was already known.
-- Is received lawfully from a third party.
-- Is independently developed.
+- Is publicly available
+- Was already lawfully known
+- Was independently developed
+- Was lawfully obtained from third parties
 
 6. RETURN OR DESTRUCTION
 
-Upon request, Confidential Information shall be returned, destroyed or permanently deleted.
+Upon written request, all confidential information must be immediately returned, deleted or permanently destroyed.
 
 7. SURVIVAL CLAUSE
 
-Confidentiality obligations survive termination and remain effective for five (5) years.
+Confidentiality obligations survive termination of the Project and remain enforceable for five (5) years.
 
-8. INJUNCTIVE RELIEF
+8. ENTIRE AGREEMENT
 
-The parties acknowledge that unauthorised disclosure may cause irreparable harm and entitle the disclosing party to injunctive relief.
+This Agreement constitutes the complete understanding between the parties concerning confidentiality obligations.
 
-9. ENTIRE AGREEMENT
+9. INJUNCTIVE RELIEF
 
-This Agreement constitutes the entire understanding regarding confidentiality.
+Unauthorized disclosure may cause irreparable harm and entitle the disclosing party to seek injunctive relief without limitation.
 
 10. GOVERNING LAW
 
@@ -112,14 +281,15 @@ This Agreement shall be governed by the laws of ${form.governingLaw}.
 
 SIGNATURES
 
-Client: ______________________________
+Client: _______________________
 
-Contractor: __________________________
+Contractor: ___________________
 
 DISCLAIMER:
-This document template is provided for informational purposes only and does not constitute legal advice.
+Template provided for informational purposes only. Legal review recommended.
 `.trim();
     }
+
 
     if (docType === "sow") {
       return `
@@ -134,68 +304,68 @@ Contractor:
 ${form.freelancerName || "[Contractor Name]"}
 
 Project:
-${form.projectTitle || "[Project Title]"}
+${form.projectTitle || "[Project Name]"}
 
 1. PROJECT BACKGROUND
 
-This Statement of Work defines the services, deliverables, milestones and commercial terms applicable to the Project.
+This Statement of Work defines commercial terms, deliverables, timelines and project responsibilities.
 
 2. SCOPE OF SERVICES
 
-${form.scope || "[Describe services in detail]"}
+${form.scope || "[Describe services]"}
 
 3. DELIVERABLES
 
-${form.deliverables || "[Describe deliverables]"}
+${form.deliverables || "[Insert deliverables]"}
 
-4. MILESTONES
+4. PROJECT MILESTONES
 
-${form.milestones || "[Describe milestones]"}
+${form.milestones || "[Insert milestones]"}
 
 5. ACCEPTANCE CRITERIA
 
-Deliverables shall be deemed accepted unless written rejection is received within seven (7) business days.
+Deliverables shall be deemed accepted unless written rejection is submitted within seven (7) business days.
 
 6. CHANGE REQUESTS
 
-Any change affecting scope, budget, deliverables or schedule must be agreed in writing.
+All material changes affecting cost, timing, scope or deliverables must be approved in writing.
 
 7. CLIENT RESPONSIBILITIES
 
 The Client shall:
 
-- Provide timely information.
-- Provide approvals and feedback.
-- Grant required access.
-- Cooperate reasonably.
+- Provide access to required systems
+- Deliver timely feedback
+- Supply information necessary for project completion
+- Cooperate professionally
 
 8. PAYMENT SCHEDULE
 
-Project Value:
-
+Total Project Value:
 £${form.paymentAmount || "[Amount]"}
 
 Payment Terms:
-
-${form.paymentTerms} days from invoice date.
+${form.paymentTerms} days after invoice date.
 
 9. GOVERNING LAW
 
-This Statement of Work shall be governed by the laws of ${form.governingLaw}.
+Governed under laws of ${form.governingLaw}
 
 SIGNATURES
 
-Client: ______________________________
+Client: _______________________
 
-Contractor: __________________________
+Contractor: ___________________
 
 DISCLAIMER:
-This document template is provided for informational purposes only and does not constitute legal advice.
+Template provided for informational purposes only.
 `.trim();
     }
-if (docType === "agreement") {
+
+
+    if (docType === "agreement") {
       return `
-FREELANCE SERVICE AGREEMENT (IR35-ORIENTED)
+FREELANCE SERVICE AGREEMENT (IR35 ORIENTED)
 
 Date: ${today}
 
@@ -210,187 +380,188 @@ ${form.projectTitle || "[Project Title]"}
 
 1. SERVICES
 
-${form.scope || "[Describe services]"}
+${form.scope || "[Insert services]"}
 
-2. INDEPENDENT BUSINESS STATUS
+2. RIGHT OF SUBSTITUTION
 
-The Contractor operates as an independent business and is not an employee, worker, partner or agent of the Client.
-
-3. RIGHT OF SUBSTITUTION
-
-The Contractor may provide a suitably qualified substitute to perform the Services.
+The Contractor may provide a suitably qualified substitute to perform services.
 
 ${form.substitutionClause || "[Substitution details]"}
 
-4. NO MUTUALITY OF OBLIGATION
+3. NO MUTUALITY OF OBLIGATION
 
-The Client is under no obligation to offer additional work and the Contractor is under no obligation to accept additional work.
+The Client is not obligated to provide future work.
 
-5. CONTRACTOR CONTROL
+The Contractor is not obligated to accept future work.
 
-The Contractor shall determine how, where and when the Services are performed.
+4. CONTRACTOR CONTROL
+
+The Contractor determines independently how, when and where work is performed.
+
+5. INDEPENDENT BUSINESS STATUS
+
+Contractor operates as an independent business entity and is not an employee, worker or agent.
 
 6. EQUIPMENT AND INSURANCE
 
-The Contractor shall provide their own equipment and maintain appropriate business insurance.
+The Contractor supplies all equipment and maintains business insurance where necessary.
 
 7. TAX RESPONSIBILITY
 
-The Contractor shall remain solely responsible for taxes, National Insurance contributions and VAT obligations.
+Contractor remains fully responsible for all taxes, VAT and National Insurance obligations.
 
-8. PAYMENT
+8. INTELLECTUAL PROPERTY
+
+IP rights transfer only upon full payment.
+
+9. TERMINATION CLAUSE
+
+Either party may terminate upon material breach or written agreement.
+
+10. LIMITATION OF LIABILITY
+
+Neither party shall be liable for indirect or consequential damages.
+
+11. PAYMENT
 
 Amount:
-
 £${form.paymentAmount || "[Amount]"}
 
 Payment Terms:
-
 ${form.paymentTerms} days.
 
-9. INTELLECTUAL PROPERTY
+12. GOVERNING LAW
 
-Intellectual Property created specifically for the Project shall transfer upon full payment.
-
-10. CONFIDENTIALITY
-
-Both parties agree to maintain confidentiality of non-public information.
-
-11. TERMINATION
-
-Either party may terminate this Agreement by written notice in the event of material breach.
-
-12. LIMITATION OF LIABILITY
-
-Neither party shall be liable for indirect or consequential losses except where prohibited by law.
-
-13. GOVERNING LAW
-
-This Agreement shall be governed by the laws of ${form.governingLaw}.
+Governed under laws of ${form.governingLaw}
 
 IMPORTANT IR35 NOTICE
 
-This Agreement includes contractor-oriented provisions but does not guarantee IR35 compliance.
+Template contains contractor-oriented provisions but does not guarantee IR35 compliance.
 
 SIGNATURES
 
-Client: ______________________________
+Client: _______________________
 
-Contractor: __________________________
+Contractor: ___________________
 
 DISCLAIMER:
-This template is provided for informational purposes only and does not constitute legal, tax or employment advice.
+Legal and tax review recommended.
 `.trim();
     }
-
-    if (docType === "latepayment") {
+if (docType === "latepayment") {
       return `
 FINAL DEMAND FOR PAYMENT
 
 Date: ${today}
 
 To:
-
 ${form.clientName || "[Client Name]"}
 
 From:
-
 ${form.freelancerName || "[Your Name]"}
 
 Invoice Number:
-
 ${form.invoiceNumber || "[Invoice Number]"}
 
 Outstanding Amount:
+£${form.debtAmount || "[Amount]"}
+
+NOTICE
+
+This letter constitutes formal final demand for immediate payment.
+
+Despite previous reminders, the outstanding balance remains unpaid.
+
+You are required to pay the full amount of:
 
 £${form.debtAmount || "[Amount]"}
 
-Dear ${form.clientName || "[Client Name]"},
+within seven (7) calendar days from receipt of this notice.
 
-This letter constitutes a FINAL DEMAND FOR PAYMENT.
+STATUTORY RIGHTS
 
-Despite previous reminders, the above invoice remains unpaid.
+Where applicable, statutory interest and compensation may be claimed under relevant UK Late Payment legislation.
 
-You are required to pay the outstanding balance of:
+FAILURE TO PAY MAY RESULT IN:
 
-£${form.debtAmount || "[Amount]"}
+- Debt collection proceedings
+- Legal proceedings
+- Court judgment
+- Recovery of legal fees and statutory interest
 
-within seven (7) days from the date of this letter.
+PRE-ACTION NOTICE
 
-STATUTORY INTEREST
+This notice may be relied upon in legal proceedings as evidence that reasonable collection attempts were made prior to litigation.
 
-Where applicable, statutory interest and compensation may be claimed under UK legislation.
-
-FAILURE TO PAY
-
-Failure to make payment may result in:
-
-- Debt recovery proceedings
-- Referral to a collection agency
-- Court proceedings
-- Recovery of interest and legal costs
-
-PRE-LEGAL ACTION NOTICE
-
-This correspondence may be relied upon as evidence that reasonable attempts were made to recover the debt before commencing legal proceedings.
-
-Yours faithfully,
+Signed:
 
 ${form.freelancerName || "[Your Name]"}
 
 DISCLAIMER:
-This template is provided for informational purposes only and does not constitute legal advice.
+Template provided for informational purposes only.
 `.trim();
     }
 
+
     if (docType === "invoice") {
       return `
-PROFESSIONAL INVOICE
+COMMERCIAL INVOICE
 
 Invoice Number:
 ${form.invoiceNumber || "[Invoice Number]"}
 
-Invoice Date:
-${form.invoiceDate || "[Invoice Date]"}
+Date:
+${today}
 
-Due Date:
-${form.dueDate || "[Due Date]"}
+From:
 
-Supplier:
+${form.freelancerName || "[Business Name]"}
 
-${form.freelancerName || "[Your Name]"}
+Business Address:
 
-${form.companyName || "[Company Name]"}
+${form.businessAddress || "[Business Address]"}
 
-Client:
+Bill To:
 
 ${form.clientName || "[Client Name]"}
 
-Project:
-
-${form.projectTitle || "[Project Title]"}
-
 DESCRIPTION OF SERVICES
 
-${form.scope || "[Description of services]"}
+Professional consulting / freelance services delivered as agreed.
 
 TOTAL AMOUNT DUE
 
 £${form.paymentAmount || "[Amount]"}
 
+PAYMENT DUE DATE
+
+${form.invoiceDueDate || "[Insert Due Date]"}
+
 PAYMENT TERMS
 
-${form.paymentTerms} days.
+Payment due within ${form.paymentTerms} days.
+
+BANK DETAILS
+
+[Insert payment details]
+
+LATE PAYMENT
+
+Late payment may incur statutory interest and collection costs.
 
 Thank you for your business.
+
+Generated by DocPilot AI
 `.trim();
     }
+
 
     if (docType === "proposal") {
       return `
 BUSINESS PROPOSAL
 
-Date: ${today}
+Date:
+${today}
 
 Prepared For:
 
@@ -398,7 +569,7 @@ ${form.clientName || "[Client Name]"}
 
 Prepared By:
 
-${form.freelancerName || "[Your Name]"}
+${form.freelancerName || "[Your Business Name]"}
 
 Project:
 
@@ -406,392 +577,212 @@ ${form.projectTitle || "[Project Title]"}
 
 EXECUTIVE SUMMARY
 
-${form.proposalObjective || "[Project objective]"}
+This proposal outlines the professional services offered in relation to the project.
 
-PROPOSED SOLUTION
+OBJECTIVE
 
-${form.scope || "[Describe proposed solution]"}
+${form.proposalObjective || "[Insert objective]"}
 
-DELIVERABLES
+PROJECT APPROACH
 
-${form.deliverables || "[Deliverables]"}
+The project shall be executed using best commercial practices, structured planning and professional delivery standards.
 
 TIMELINE
 
-${form.proposalTimeline || "[Timeline]"}
+${form.proposalTimeline || "[Insert timeline]"}
 
 PROJECT INVESTMENT
 
-£${form.proposalBudget || form.paymentAmount || "[Amount]"}
+£${form.proposalBudget || "[Budget]"}
 
-WHY US
+DELIVERABLES
 
-We will provide professional services, transparent communication, timely delivery and ongoing support.
+The final deliverables shall be provided in accordance with agreed milestones.
 
-NEXT STEPS
+COMMERCIAL TERMS
 
-Upon acceptance, a formal agreement and project schedule will be issued.
+- Fixed scope unless amended in writing
+- Payment according to invoice schedule
+- Change requests billed separately
 
-Thank you for considering this proposal.
+VALIDITY
+
+This proposal remains valid for thirty (30) days.
+
+We appreciate the opportunity to work together.
+
+Signed:
+
+${form.freelancerName || "[Your Name]"}
+
+Generated by DocPilot AI
 `.trim();
     }
 
     return "";
   }
-const generated = generateText();
-async function copyDocument() {
-  try {
-    await navigator.clipboard.writeText(generated);
-    alert("Document copied to clipboard");
-  } catch (err) {
-    alert("Failed to copy document");
-  }
-}
-  async function downloadDocx() {
-    const paragraphs = generated.split("\n").map((line) => {
+
+  const generated = generateText();
+async function downloadDocx() {
+
+    const lines = generated.split("\n");
+
+    const paragraphs = lines.map((line) => {
+
+      const upper = line === line.toUpperCase() && line.length > 3;
+
+      if (upper) {
+        return new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [
+            new TextRun({
+              text: line,
+              bold: true
+            })
+          ],
+          spacing: {
+            after: 200
+          }
+        });
+      }
+
       return new Paragraph({
         children: [
           new TextRun({
             text: line,
-            font: "Calibri",
-            size: 24,
-          }),
+            size: 22
+          })
         ],
+        spacing: {
+          after: 120
+        }
       });
     });
 
     const doc = new Document({
       sections: [
         {
-          children: paragraphs,
-        },
-      ],
+          children: paragraphs
+        }
+      ]
     });
 
     const blob = await Packer.toBlob(doc);
 
     saveAs(
       blob,
-      `DocPilot-${docType}-${new Date()
-        .toISOString()
-        .slice(0, 10)}.docx`
+      `DocPilot-${docType}-${new Date().toISOString().slice(0,10)}.docx`
     );
   }
- function downloadPdf() {
-  const pdf = new jsPDF();
 
-  const lines = pdf.splitTextToSize(generated, 180);
 
-  pdf.setFont("helvetica");
-  pdf.setFontSize(11);
-
-  pdf.text(lines, 15, 20);
-
-  pdf.save(
-    `DocPilot-${docType.toUpperCase()}-${new Date()
-      .toISOString()
-      .slice(0, 10)}.pdf`
-  );
-} 
   function downloadPdf() {
-  const doc = new jsPDF();
 
-  const lines = doc.splitTextToSize(generated, 180);
+    const pdf = new jsPDF();
 
-  doc.setFont("helvetica");
-  doc.setFontSize(11);
+    const lines = generated.split("\n");
 
-  doc.text(lines, 15, 20);
+    let y = 20;
 
-  doc.save(
-    `DocPilot-${docType.toUpperCase()}-${new Date()
-      .toISOString()
-      .slice(0, 10)}.pdf`
-  );
-}
+    pdf.setFont("helvetica");
+
+    lines.forEach((line) => {
+
+      const upper = line === line.toUpperCase() && line.length > 3;
+
+      if (upper) {
+        pdf.setFontSize(14);
+      } else {
+        pdf.setFontSize(11);
+      }
+
+      const wrapped = pdf.splitTextToSize(line, 180);
+
+      pdf.text(wrapped, 15, y);
+
+      y += wrapped.length * 7;
+
+      if (y > 270) {
+        pdf.addPage();
+        y = 20;
+      }
+    });
+
+    pdf.save(
+      `DocPilot-${docType}-${new Date().toISOString().slice(0,10)}.pdf`
+    );
+  }
+
+
+  function copyDocument() {
+    navigator.clipboard.writeText(generated);
+    alert("Document copied");
+  }
+
 
   return (
     <div
       style={{
-        maxWidth: 900,
-        margin: "60px auto",
-        padding: 20,
+        maxWidth: "1000px",
+        margin: "40px auto",
+        padding: "30px",
         fontFamily: "Arial",
+        background: "#fafafa"
       }}
     >
-      <h1 style={{ fontSize: 42 }}>
-        DocPilot AI Generator (UK)
+
+      <h1
+        style={{
+          fontSize: 42,
+          marginBottom: 10
+        }}
+      >
+        DocPilot AI Professional
       </h1>
 
-      <p>
-        Create professional UK freelance documents in minutes.
+      <p
+        style={{
+          marginBottom: 25,
+          color: "#555"
+        }}
+      >
+        Professional UK Legal & Business Document Generator
       </p>
 
-      <label style={{ display: "block", marginTop: 20 }}>
-        <b>Select document type:</b>
-      </label>
 
       <select
         value={docType}
-        onChange={(e) => setDocType(e.target.value)}
+        onChange={(e)=>setDocType(e.target.value)}
         style={{
-          padding: 12,
-          marginTop: 10,
           width: "100%",
+          padding: 14,
+          borderRadius: 8
         }}
       >
-        <option value="nda">
-          NDA - Non-Disclosure Agreement
-        </option>
-
-        <option value="sow">
-          SOW - Statement of Work
-        </option>
-
-        <option value="agreement">
-          Freelance Service Agreement (IR35)
-        </option>
-
-        <option value="latepayment">
-          Late Payment Demand Letter
-        </option>
-
-        <option value="invoice">
-          Professional Invoice
-        </option>
-
-        <option value="proposal">
-          Business Proposal
-        </option>
+        <option value="nda">NDA Agreement</option>
+        <option value="sow">Statement of Work</option>
+        <option value="agreement">IR35 Agreement</option>
+        <option value="latepayment">Late Payment Letter</option>
+        <option value="invoice">Invoice Generator</option>
+        <option value="proposal">Business Proposal</option>
       </select>
 
-      <h2 style={{ marginTop: 30 }}>
-        Fill details
+
+      <h2
+        style={{
+          marginTop: 30
+        }}
+      >
+        Fill Document Details
       </h2>
 
-      <input
-        name="freelancerName"
-        placeholder="Freelancer / Contractor Name"
-        value={form.freelancerName}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
 
-      <input
-        name="companyName"
-        placeholder="Company Name"
-        value={form.companyName}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
+      {visibleFields().map((field)=>(
+        <div key={field}>
+          {renderField(field)}
+        </div>
+      ))}
 
-      <input
-        name="clientName"
-        placeholder="Client Name"
-        value={form.clientName}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
-
-      <input
-        name="projectTitle"
-        placeholder="Project Title"
-        value={form.projectTitle}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
-
-      <textarea
-        name="scope"
-        placeholder="Scope of work"
-        value={form.scope}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="deliverables"
-        placeholder="Deliverables"
-        value={form.deliverables}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="milestones"
-        placeholder="Milestones"
-        value={form.milestones}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="deadlines"
-        placeholder="Deadlines"
-        value={form.deadlines}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="confidentialInfo"
-        placeholder="Confidential Information"
-        value={form.confidentialInfo}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="substitutionClause"
-        placeholder="Substitution Clause"
-        value={form.substitutionClause}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <input
-        name="paymentAmount"
-        placeholder="Amount (£)"
-        value={form.paymentAmount}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
-
-      <input
-        name="invoiceNumber"
-        placeholder="Invoice Number"
-        value={form.invoiceNumber}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
-
-      <input
-        name="invoiceDate"
-        placeholder="Invoice Date"
-        value={form.invoiceDate}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
-
-      <input
-        name="dueDate"
-        placeholder="Due Date"
-        value={form.dueDate}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
-
-      <input
-        name="debtAmount"
-        placeholder="Outstanding Amount (£)"
-        value={form.debtAmount}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
-
-      <textarea
-        name="proposalObjective"
-        placeholder="Proposal Objective"
-        value={form.proposalObjective}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <textarea
-        name="proposalTimeline"
-        placeholder="Proposal Timeline"
-        value={form.proposalTimeline}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          minHeight: 80,
-        }}
-      />
-
-      <input
-        name="proposalBudget"
-        placeholder="Proposal Budget (£)"
-        value={form.proposalBudget}
-        onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-        }}
-      />
 
       <select
         name="paymentTerms"
@@ -799,14 +790,16 @@ async function copyDocument() {
         onChange={handleChange}
         style={{
           width: "100%",
-          padding: 12,
-          marginTop: 10,
+          padding: 14,
+          marginTop: 15,
+          borderRadius: 8
         }}
       >
-        <option value="7">7 days</option>
-        <option value="14">14 days</option>
-        <option value="30">30 days</option>
+        <option value="7">7 Days</option>
+        <option value="14">14 Days</option>
+        <option value="30">30 Days</option>
       </select>
+
 
       <select
         name="governingLaw"
@@ -814,79 +807,110 @@ async function copyDocument() {
         onChange={handleChange}
         style={{
           width: "100%",
-          padding: 12,
-          marginTop: 10,
+          padding: 14,
+          marginTop: 15,
+          borderRadius: 8
         }}
       >
-        <option value="England & Wales">
-          England & Wales
-        </option>
-
-        <option value="Scotland">
-          Scotland
-        </option>
+        <option value="England & Wales">England & Wales</option>
+        <option value="Scotland">Scotland</option>
       </select>
 
-      <h2 style={{ marginTop: 40 }}>
+
+      <h2
+        style={{
+          marginTop: 40
+        }}
+      >
         Generated Document
       </h2>
+
 
       <textarea
         value={generated}
         readOnly
         style={{
           width: "100%",
-          padding: 12,
+          minHeight: 420,
+          padding: 20,
           marginTop: 10,
-          minHeight: 350,
           background: "#f4f4f4",
-          fontFamily: "Courier New",
           whiteSpace: "pre-wrap",
+          fontFamily: "Courier New",
+          borderRadius: 8
         }}
       />
 
-      <button
-        onClick={downloadDocx}
+
+      <div
         style={{
-          padding: "14px 28px",
-          fontSize: 18,
-          cursor: "pointer",
-          marginTop: 20,
-          background: "#4CAF50",
-          color: "#fff",
-          border: "none",
-          borderRadius: 8,
+          marginTop: 25
         }}
       >
-        📥 Download DOCX
-      </button>
-          <button
-  onClick={copyDocument}
-  style={{
-    padding: "14px 28px",
-    fontSize: 18,
-    cursor: "pointer",
-    marginTop: 20,
-    marginLeft: 10,
-    background: "#2196F3",
-    color: "#fff",
-    border: "none",
-    borderRadius: 8,
-  }}
->
-  📋 Copy Document
-</button>
-      
+
+        <button
+          onClick={downloadDocx}
+          style={{
+            padding: "14px 28px",
+            background: "#4CAF50",
+            color: "#fff",
+            border: "none",
+            borderRadius: 8,
+            cursor: "pointer",
+            fontSize: 18
+          }}
+        >
+          📥 DOCX
+        </button>
+
+
+        <button
+          onClick={downloadPdf}
+          style={{
+            padding: "14px 28px",
+            background: "#ff9800",
+            color: "#fff",
+            border: "none",
+            borderRadius: 8,
+            cursor: "pointer",
+            fontSize: 18,
+            marginLeft: 10
+          }}
+        >
+          📄 PDF
+        </button>
+
+
+        <button
+          onClick={copyDocument}
+          style={{
+            padding: "14px 28px",
+            background: "#2196F3",
+            color: "#fff",
+            border: "none",
+            borderRadius: 8,
+            cursor: "pointer",
+            fontSize: 18,
+            marginLeft: 10
+          }}
+        >
+          📋 Copy
+        </button>
+
+      </div>
+
+
       <p
         style={{
-          marginTop: 20,
-          fontSize: 14,
-          color: "#666",
+          marginTop: 30,
+          fontSize: 13,
+          color: "#666"
         }}
       >
-        Disclaimer: Templates are provided for informational
-        purposes only and do not constitute legal advice.
+        Professional templates generated by DocPilot AI.
+        These documents are provided for informational purposes only and do not constitute legal advice.
       </p>
+
     </div>
   );
 }
