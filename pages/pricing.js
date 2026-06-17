@@ -1,109 +1,127 @@
 export default function Pricing() {
+  const cardStyle = {
+    border: "1px solid #ccc",
+    borderRadius: 10,
+    padding: 20,
+    marginTop: 20
+  };
+
+  const buttonStyle = {
+    display: "inline-block",
+    padding: "12px 24px",
+    fontSize: 16,
+    backgroundColor: "#4CAF50",
+    color: "white",
+    textDecoration: "none",
+    borderRadius: 6,
+    marginTop: 10
+  };
+
   return (
-    <div style={{maxWidth:800, margin:"40px auto", fontFamily:"Arial, sans-serif", padding:"0 20px"}}>
+    <div
+      style={{
+        maxWidth: 900,
+        margin: "40px auto",
+        fontFamily: "Arial, sans-serif",
+        padding: "0 20px"
+      }}
+    >
       <h1>Pricing</h1>
 
       <p>
-        Choose a plan and get access to AI document generation. 
+        Choose the plan that fits your workflow.  
         Payments are processed securely via Payhip (GBP).
       </p>
 
-      {/* Starter */}
-      <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:30}}>
+      <h2 style={{ marginTop: 40 }}>Individual Plans</h2>
+
+      {/* STARTER */}
+      <div style={cardStyle}>
         <h2>Starter</h2>
-        <p style={{fontSize:22}}><b>£9.99 / month</b></p>
-        <p style={{color: "#555", marginBottom: "15px"}}>Access for 30 days</p>
+        <p style={{ fontSize: 22 }}>
+          <b>£9.99 / month</b>
+        </p>
+
         <ul>
-          <li>Up to 30 documents per month</li>
-          <li>Multiple languages support</li>
-          <li>Email delivery</li>
+          <li>Basic document generation</li>
+          <li>NDA Generator</li>
+          <li>SOW Generator</li>
+          <li>Invoice Generator</li>
+          <li>PDF + DOCX Export</li>
+          <li>Copy to Clipboard</li>
+          <li>Limited monthly generations</li>
+          <li>Standard support</li>
         </ul>
-        <a 
+
+        <a
           href="https://payhip.com/order?link=DWVGs&pricing_plan=2VGJjRRnGD"
-          style={{
-            display: "inline-block",
-            padding:"12px 24px", 
-            fontSize:16, 
-            backgroundColor:"#4CAF50", 
-            color:"white", 
-            textDecoration:"none",
-            borderRadius:6,
-            marginTop:10
-          }}
+          style={buttonStyle}
         >
           Buy Starter — £9.99
         </a>
       </div>
 
-      {/* Pro */}
-      <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:20}}>
+      {/* PRO */}
+      <div style={cardStyle}>
         <h2>Pro</h2>
-        <p style={{fontSize:22}}><b>£29.99 / month</b></p>
-        <p style={{color: "#555", marginBottom: "15px"}}>Access for 30 days</p>
+
+        <p style={{ fontSize: 22 }}>
+          <b>£29.99 / month</b>
+        </p>
+
+        <p>
+          <b>£289 / year</b> — Save £70.88
+        </p>
+
         <ul>
-          <li>Unlimited documents</li>
-          <li>Priority processing</li>
-          <li>Advanced templates</li>
+          <li>Everything in Starter</li>
+          <li>Unlimited document generation</li>
+          <li>Premium templates</li>
+          <li>No watermark</li>
+          <li>Faster document generation</li>
+          <li>Premium PDF formatting</li>
+          <li>Priority support</li>
         </ul>
-        <a 
+        <a
           href="https://payhip.com/order?link=DWVGs&pricing_plan=20zAXXvwWr"
-          style={{
-            display: "inline-block",
-            padding:"12px 24px", 
-            fontSize:16, 
-            backgroundColor:"#4CAF50", 
-            color:"white", 
-            textDecoration:"none",
-            borderRadius:6,
-            marginTop:10
-          }}
+          style={buttonStyle}
         >
           Buy Pro — £29.99
         </a>
       </div>
 
-      {/* Business */}
-      <div style={{border:"1px solid #ccc", borderRadius:10, padding:20, marginTop:20}}>
+      {/* BUSINESS */}
+      <div style={cardStyle}>
         <h2>Business</h2>
-        <p style={{fontSize:22}}><b>£59.99 / month</b></p>
-        <p style={{color: "#555", marginBottom: "15px"}}>Access for 30 days</p>
+
+        <p style={{ fontSize: 22 }}>
+          <b>£59.99 / month</b>
+        </p>
+
+        <p>
+          <b>£576 / year</b> — Save £143.88
+        </p>
+
         <ul>
-          <li>Unlimited documents</li>
-          <li>Priority processing</li>
-          <li>Premium templates</li>
-          <li>Business support</li>
+          <li>Everything in Pro</li>
+          <li>Commercial usage rights</li>
+          <li>Unlimited premium templates</li>
+          <li>Advanced business templates</li>
+          <li>Premium formatting</li>
+          <li>Priority generation queue</li>
+          <li>Business document suite</li>
         </ul>
-        <a 
+
+        <a
           href="https://payhip.com/order?link=DWVGs&pricing_plan=nLWRaagvGa"
-          style={{
-            display: "inline-block",
-            padding:"12px 24px", 
-            fontSize:16, 
-            backgroundColor:"#4CAF50", 
-            color:"white", 
-            textDecoration:"none",
-            borderRadius:6,
-            marginTop:10
-          }}
+          style={buttonStyle}
         >
           Buy Business — £59.99
         </a>
       </div>
 
-      <p style={{marginTop:30}}>
-        Need a custom plan for your business? Contact us via email.
-      </p>
+      <h2 style={{ marginTop: 50 }}>
+        Business & Enterprise Solutions
+      </h2>
 
-      <div style={{marginTop:30, textAlign:"center", fontSize:"15px"}}>
-        <a href="/" style={{marginRight:15}}>Home</a>
-        <a href="/demo" style={{marginRight:15}}>Demo</a>
-        <a href="/pricing" style={{marginRight:15}}>Pricing</a>
-        <a href="/dashboard" style={{marginRight:15, fontWeight:"bold", color:"#4CAF50"}}>Dashboard</a>
-        <a href="/terms" style={{marginRight:15}}>Terms</a>
-        <a href="/privacy" style={{marginRight:15}}>Privacy</a>
-        <a href="/contact">Contact</a>
-      </div>
-    </div>
-  );
-}
 
