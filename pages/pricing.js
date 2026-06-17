@@ -82,6 +82,7 @@ export default function Pricing() {
           <li>Premium PDF formatting</li>
           <li>Priority support</li>
         </ul>
+
         <a
           href="https://payhip.com/order?link=DWVGs&pricing_plan=20zAXXvwWr"
           style={buttonStyle}
@@ -122,6 +123,102 @@ export default function Pricing() {
 
       <h2 style={{ marginTop: 50 }}>
         Business & Enterprise Solutions
-      </h2>
+      </h2>{/* AGENCY */}
+      <div style={cardStyle}>
+        <h2>Agency / Team</h2>
+
+        <p style={{ fontSize: 22 }}>
+          <b>£100 / month</b>
+        </p>
+
+        <p>
+          <b>£1000 / year</b> — Save £200
+        </p>
+
+        <ul>
+          <li>Everything in Business</li>
+          <li>Up to 5 team members</li>
+          <li>Shared document archive</li>
+          <li>Custom company watermarks</li>
+          <li>Priority generation queue</li>
+          <li>Google Drive integration</li>
+          <li>Team collaboration workspace</li>
+          <li>Shared access management</li>
+        </ul>
+
+        <a
+          href="#"
+          style={buttonStyle}
+        >
+          Agency Plan — £100
+        </a>
+      </div>
+
+      {/* WHITE LABEL */}
+      <div style={cardStyle}>
+        <h2>White Label Enterprise</h2>
+
+        <p style={{ fontSize: 22 }}>
+          <b>£200 / month</b>
+        </p>
+
+        <p>
+          <b>Custom Enterprise Annual Contracts Available</b>
+        </p>
+
+        <ul>
+          <li>Everything in Agency Plan</li>
+          <li>Full white label deployment</li>
+          <li>Complete removal of DocPilot branding</li>
+          <li>Runs on your branded subdomain</li>
+          <li>Corporate color customization</li>
+          <li>Upload your own company logo</li>
+          <li>Unlimited team access</li>
+          <li>Multi-user simultaneous generation</li>
+          <li>Client portal with branded approval workflow</li>
+          <li>Send SOW approval links directly to clients</li>
+          <li>Dedicated onboarding support</li>
+          <li>Enterprise support</li>
+        </ul>
+
+        <a
+          href="#"
+          style={buttonStyle}
+        >
+          Contact Sales
+        </a>
+      </div>
+
+      <p style={{ marginTop: 40 }}>
+        Need a custom enterprise solution? Contact us directly.
+      </p>
+
+      <div
+        style={{
+          marginTop: 30,
+          textAlign: "center",
+          fontSize: "15px"
+        }}
+      >
+        <a href="/" style={{ marginRight: 15 }}>Home</a>
+        <a href="/demo" style={{ marginRight: 15 }}>Demo</a>
+        <a href="/pricing" style={{ marginRight: 15 }}>Pricing</a>
+        <a
+          href="/dashboard"
+          style={{
+            marginRight: 15,
+            fontWeight: "bold",
+            color: "#4CAF50"
+          }}
+        >
+          Dashboard
+        </a>
+        <a href="/terms" style={{ marginRight: 15 }}>Terms</a>
+        <a href="/privacy" style={{ marginRight: 15 }}>Privacy</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  );
+}
 
 
