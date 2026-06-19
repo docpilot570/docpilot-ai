@@ -20,17 +20,17 @@ export default function Pricing() {
   return (
     <div
       style={{
-        maxWidth: 900,
+        maxWidth: 950,
         margin: "40px auto",
         fontFamily: "Arial, sans-serif",
         padding: "0 20px"
       }}
     >
-      <h1>Pricing</h1>
+      <h1>Pricing Plans</h1>
 
       <p>
-        Choose the plan that fits your workflow.  
-        Payments are processed securely via Payhip (GBP).
+        Choose the plan that matches your workflow. 
+        Built for freelancers, agencies and enterprise teams.
       </p>
 
       <h2 style={{ marginTop: 40 }}>Individual Plans</h2>
@@ -38,19 +38,24 @@ export default function Pricing() {
       {/* STARTER */}
       <div style={cardStyle}>
         <h2>Starter</h2>
+
         <p style={{ fontSize: 22 }}>
           <b>£9.99 / month</b>
         </p>
 
+        <p>
+          Best for freelancers getting started
+        </p>
+
         <ul>
-          <li>Basic document generation</li>
-          <li>NDA Generator</li>
-          <li>SOW Generator</li>
-          <li>Invoice Generator</li>
-          <li>PDF + DOCX Export</li>
-          <li>Copy to Clipboard</li>
-          <li>Limited monthly generations</li>
-          <li>Standard support</li>
+          <li>30 AI document generations per month</li>
+          <li>PDF Export</li>
+          <li>Copy & Text Export</li>
+          <li>Single User Access</li>
+          <li>Standard Outside IR35 Contract Builder</li>
+          <li>Unlimited NDA Generator</li>
+          <li>Unlimited Late Payment Letter Generator</li>
+          <li>Email Support</li>
         </ul>
 
         <a
@@ -70,17 +75,23 @@ export default function Pricing() {
         </p>
 
         <p>
-          <b>£289 / year</b> — Save £70.88
+          <b>£289 / year</b> — Save £70+
+        </p>
+
+        <p>
+          Best for active contractors and consultants
         </p>
 
         <ul>
-          <li>Everything in Starter</li>
-          <li>Unlimited document generation</li>
-          <li>Premium templates</li>
-          <li>No watermark</li>
-          <li>Faster document generation</li>
-          <li>Premium PDF formatting</li>
-          <li>Priority support</li>
+          <li>100 AI document generations per month</li>
+          <li>Full Editable DOCX (Microsoft Word)</li>
+          <li>PDF + DOCX + Text Export</li>
+          <li>Advanced Statement of Work Generator</li>
+          <li>Client Profile Storage</li>
+          <li>Save client data for future contracts</li>
+          <li>Full document editing in MS Word</li>
+          <li>Single User Access</li>
+          <li>Priority Support</li>
         </ul>
 
         <a
@@ -90,8 +101,7 @@ export default function Pricing() {
           Buy Pro — £29.99
         </a>
       </div>
-
-      {/* BUSINESS */}
+{/* BUSINESS */}
       <div style={cardStyle}>
         <h2>Business</h2>
 
@@ -100,17 +110,23 @@ export default function Pricing() {
         </p>
 
         <p>
-          <b>£576 / year</b> — Save £143.88
+          <b>£576 / year</b> — Save £140+
+        </p>
+
+        <p>
+          Best for growing companies and teams managing contractors
         </p>
 
         <ul>
-          <li>Everything in Pro</li>
-          <li>Commercial usage rights</li>
-          <li>Unlimited premium templates</li>
-          <li>Advanced business templates</li>
-          <li>Premium formatting</li>
-          <li>Priority generation queue</li>
-          <li>Business document suite</li>
+          <li>Unlimited AI document generation</li>
+          <li>Full DOCX + PDF + Text Export</li>
+          <li>Up to 3 Team Seats</li>
+          <li>AI Contract Risk Checker (IR35 Audit)</li>
+          <li>AI Compliance Checker</li>
+          <li>Bulk Document Generation</li>
+          <li>Shared Team Access</li>
+          <li>Priority Email Support</li>
+          <li>Contractor Management Workflow</li>
         </ul>
 
         <a
@@ -123,62 +139,68 @@ export default function Pricing() {
 
       <h2 style={{ marginTop: 50 }}>
         Business & Enterprise Solutions
-      </h2>{/* AGENCY */}
+      </h2>
+
+      {/* AGENCY */}
       <div style={cardStyle}>
-        <h2>Agency / Team</h2>
+        <h2>Agency</h2>
 
         <p style={{ fontSize: 22 }}>
-          <b>£100 / month</b>
+          <b>£99 / month</b>
         </p>
 
         <p>
-          <b>£1000 / year</b> — Save £200
+          <b>£1000 / year</b> — Save £180+
+        </p>
+
+        <p>
+          Best for growing agencies and collaborative teams
         </p>
 
         <ul>
-          <li>Everything in Business</li>
-          <li>Up to 5 team members</li>
-          <li>Shared document archive</li>
-          <li>Custom company watermarks</li>
-          <li>Priority generation queue</li>
-          <li>Google Drive integration</li>
-          <li>Team collaboration workspace</li>
-          <li>Shared access management</li>
+          <li>Unlimited AI document generation for the team</li>
+          <li>Up to 15 Team Seats</li>
+          <li>Shared Company Dashboard & Archive</li>
+          <li>Premium DOCX & PDF Export with Agency Details</li>
+          <li>Automatic Company Details Injection</li>
+          <li>AI Contract Risk Checker (IR35 Audits Included)</li>
+          <li>Dedicated Account Manager</li>
+          <li>SLA Priority Support</li>
         </ul>
 
         <a
           href="#"
           style={buttonStyle}
         >
-          Agency Plan — £100
+          Agency Plan — £99
         </a>
       </div>
-
-      {/* WHITE LABEL */}
+{/* WHITE LABEL */}
       <div style={cardStyle}>
         <h2>White Label Enterprise</h2>
 
         <p style={{ fontSize: 22 }}>
-          <b>£200 / month</b>
+          <b>£199 / month</b>
         </p>
 
         <p>
           <b>Custom Enterprise Annual Contracts Available</b>
         </p>
 
+        <p>
+          Best for enterprise agencies and SaaS resellers
+        </p>
+
         <ul>
-          <li>Everything in Agency Plan</li>
-          <li>Full white label deployment</li>
-          <li>Complete removal of DocPilot branding</li>
-          <li>Runs on your branded subdomain</li>
-          <li>Corporate color customization</li>
-          <li>Upload your own company logo</li>
-          <li>Unlimited team access</li>
-          <li>Multi-user simultaneous generation</li>
-          <li>Client portal with branded approval workflow</li>
-          <li>Send SOW approval links directly to clients</li>
-          <li>Dedicated onboarding support</li>
-          <li>Enterprise support</li>
+          <li>100% White Label Solution</li>
+          <li>Full Removal of DocPilot Branding</li>
+          <li>Custom Domain Integration</li>
+          <li>Custom Branding (Logo + Corporate Colors)</li>
+          <li>Unlimited Team Seats</li>
+          <li>Client Review & Approval Portal</li>
+          <li>API Access (Beta)</li>
+          <li>Resell the Platform Under Your Own Brand</li>
+          <li>Dedicated Enterprise Support</li>
         </ul>
 
         <a
@@ -220,5 +242,6 @@ export default function Pricing() {
     </div>
   );
 }
+
 
 
