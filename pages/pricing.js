@@ -38,15 +38,10 @@ export default function Pricing() {
       {/* STARTER */}
       <div style={cardStyle}>
         <h2>Starter</h2>
-
         <p style={{ fontSize: 22 }}>
           <b>£9.99 / month</b>
         </p>
-
-        <p>
-          Best for freelancers getting started
-        </p>
-
+        <p>Best for freelancers getting started</p>
         <ul>
           <li>30 AI document generations per month</li>
           <li>PDF Export</li>
@@ -57,7 +52,6 @@ export default function Pricing() {
           <li>Unlimited Late Payment Letter Generator</li>
           <li>Email Support</li>
         </ul>
-
         <a
           href="https://payhip.com/order?link=DWVGs&pricing_plan=2VGJjRRnGD"
           style={buttonStyle}
@@ -69,19 +63,13 @@ export default function Pricing() {
       {/* PRO */}
       <div style={cardStyle}>
         <h2>Pro</h2>
-
         <p style={{ fontSize: 22 }}>
           <b>£29.99 / month</b>
         </p>
-
         <p>
           <b>£289 / year</b> — Save £70+
         </p>
-
-        <p>
-          Best for active contractors and consultants
-        </p>
-
+        <p>Best for active contractors and consultants</p>
         <ul>
           <li>100 AI document generations per month</li>
           <li>Full Editable DOCX (Microsoft Word)</li>
@@ -93,7 +81,6 @@ export default function Pricing() {
           <li>Single User Access</li>
           <li>Priority Support</li>
         </ul>
-
         <a
           href="https://payhip.com/order?link=DWVGs&pricing_plan=20zAXXvwWr"
           style={buttonStyle}
@@ -101,22 +88,17 @@ export default function Pricing() {
           Buy Pro — £29.99
         </a>
       </div>
-{/* BUSINESS */}
+
+      {/* BUSINESS */}
       <div style={cardStyle}>
         <h2>Business</h2>
-
         <p style={{ fontSize: 22 }}>
           <b>£59.99 / month</b>
         </p>
-
         <p>
           <b>£576 / year</b> — Save £140+
         </p>
-
-        <p>
-          Best for growing companies and teams managing contractors
-        </p>
-
+        <p>Best for growing companies and teams managing contractors</p>
         <ul>
           <li>Unlimited AI document generation</li>
           <li>Full DOCX + PDF + Text Export</li>
@@ -128,7 +110,6 @@ export default function Pricing() {
           <li>Priority Email Support</li>
           <li>Contractor Management Workflow</li>
         </ul>
-
         <a
           href="https://payhip.com/order?link=DWVGs&pricing_plan=nLWRaagvGa"
           style={buttonStyle}
@@ -137,26 +118,18 @@ export default function Pricing() {
         </a>
       </div>
 
-      <h2 style={{ marginTop: 50 }}>
-        Business & Enterprise Solutions
-      </h2>
+      <h2 style={{ marginTop: 50 }}>Business & Enterprise Solutions</h2>
 
       {/* AGENCY */}
       <div style={cardStyle}>
         <h2>Agency</h2>
-
         <p style={{ fontSize: 22 }}>
           <b>£100 / month</b>
         </p>
-
         <p>
           <b>£1000 / year</b> — Save £200
         </p>
-
-        <p>
-          Best for growing agencies and collaborative teams
-        </p>
-
+        <p>Best for growing agencies and collaborative teams</p>
         <ul>
           <li>Unlimited AI document generation for the team</li>
           <li>Up to 15 Team Seats</li>
@@ -167,30 +140,24 @@ export default function Pricing() {
           <li>Dedicated Account Manager</li>
           <li>SLA Priority Support</li>
         </ul>
-
         <a
-          href="#"
+          href="https://payhip.com/order?link=DWVGs&pricing_plan=PAWg3xR4WK"
           style={buttonStyle}
         >
-          Agency Plan — £100
+          Buy Agency — £100
         </a>
       </div>
-{/* WHITE LABEL */}
+
+      {/* WHITE LABEL */}
       <div style={cardStyle}>
         <h2>White Label Enterprise</h2>
-
         <p style={{ fontSize: 22 }}>
           <b>£200 / month</b>
         </p>
-
         <p>
           <b>Custom Enterprise Annual Contracts Available</b>
         </p>
-
-        <p>
-          Best for enterprise agencies and SaaS resellers
-        </p>
-
+        <p>Best for enterprise agencies and SaaS resellers</p>
         <ul>
           <li>100% White Label Solution</li>
           <li>Full Removal of DocPilot Branding</li>
@@ -202,9 +169,8 @@ export default function Pricing() {
           <li>Resell the Platform Under Your Own Brand</li>
           <li>Dedicated Enterprise Support</li>
         </ul>
-
         <a
-          href="#"
+          href="/contact"
           style={buttonStyle}
         >
           Contact Sales
@@ -212,7 +178,7 @@ export default function Pricing() {
       </div>
 
       <p style={{ marginTop: 40 }}>
-        Need a custom enterprise solution? Contact us directly.
+        Need a custom enterprise solution? <a href="/contact">Contact us directly</a>.
       </p>
 
       <div
@@ -225,14 +191,7 @@ export default function Pricing() {
         <a href="/" style={{ marginRight: 15 }}>Home</a>
         <a href="/demo" style={{ marginRight: 15 }}>Demo</a>
         <a href="/pricing" style={{ marginRight: 15 }}>Pricing</a>
-        <a
-          href="/dashboard"
-          style={{
-            marginRight: 15,
-            fontWeight: "bold",
-            color: "#4CAF50"
-          }}
-        >
+        <a href="/dashboard" style={{ marginRight: 15, fontWeight: "bold", color: "#4CAF50" }}>
           Dashboard
         </a>
         <a href="/terms" style={{ marginRight: 15 }}>Terms</a>
@@ -242,6 +201,3 @@ export default function Pricing() {
     </div>
   );
 }
-
-
-
