@@ -146,11 +146,11 @@ export default function Pricing() {
         <h2>Agency</h2>
 
         <p style={{ fontSize: 22 }}>
-          <b>£99 / month</b>
+          <b>£100 / month</b>
         </p>
 
         <p>
-          <b>£1000 / year</b> — Save £180+
+          <b>£1000 / year</b> — Save £200
         </p>
 
         <p>
@@ -172,7 +172,7 @@ export default function Pricing() {
           href="#"
           style={buttonStyle}
         >
-          Agency Plan — £99
+          Agency Plan — £100
         </a>
       </div>
 {/* WHITE LABEL */}
@@ -180,7 +180,7 @@ export default function Pricing() {
         <h2>White Label Enterprise</h2>
 
         <p style={{ fontSize: 22 }}>
-          <b>£199 / month</b>
+          <b>£200 / month</b>
         </p>
 
         <p>
