@@ -17,6 +17,17 @@ export default function Pricing() {
     marginTop: 10
   };
 
+  const offerStyle = {
+    backgroundColor: "#e8f5e9",
+    border: "1px solid #4CAF50",
+    borderRadius: 8,
+    padding: "12px 16px",
+    marginTop: 20,
+    marginBottom: 10,
+    fontWeight: "bold",
+    color: "#2e7d32"
+  };
+
   return (
     <div
       style={{
@@ -32,6 +43,10 @@ export default function Pricing() {
         Choose the plan that matches your workflow. 
         Built for freelancers, agencies and enterprise teams.
       </p>
+
+      <div style={offerStyle}>
+        🚀 Launch Offer: Save 20% with Annual Billing
+      </div>
 
       <h2 style={{ marginTop: 40 }}>Individual Plans</h2>
 
@@ -67,7 +82,7 @@ export default function Pricing() {
           <b>£29.99 / month</b>
         </p>
         <p>
-          <b>£289 / year</b> — Save £70+
+          <b>£288 / year</b> — Save 20%
         </p>
         <p>Best for active contractors and consultants</p>
         <ul>
@@ -96,7 +111,7 @@ export default function Pricing() {
           <b>£59.99 / month</b>
         </p>
         <p>
-          <b>£576 / year</b> — Save £140+
+          <b>£576 / year</b> — Save 20%
         </p>
         <p>Best for growing companies and teams managing contractors</p>
         <ul>
@@ -127,7 +142,7 @@ export default function Pricing() {
           <b>£100 / month</b>
         </p>
         <p>
-          <b>£1000 / year</b> — Save £200
+          <b>£960 / year</b> — Save 20%
         </p>
         <p>Best for growing agencies and collaborative teams</p>
         <ul>
@@ -201,3 +216,4 @@ export default function Pricing() {
     </div>
   );
 }
+
