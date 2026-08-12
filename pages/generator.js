@@ -11,38 +11,74 @@ import jsPDF from "jspdf";
 
 export default function Generator() {
 
+  const hasAccess = false;
+
+  if (!hasAccess) {
+    return (
+      <div
+        style={{
+          maxWidth: 700,
+          margin: "80px auto",
+          padding: "40px 20px",
+          fontFamily: "Arial, sans-serif",
+          textAlign: "center"
+        }}
+      >
+        <h1 style={{ fontSize: 32, marginBottom: 20 }}>
+          Subscription Required
+        </h1>
+
+        <p style={{ fontSize: 18, lineHeight: 1.6, color: "#444" }}>
+          To use the full UK document generator and download professional DOCX / PDF files, please choose a plan.
+        </p>
+
+        <a
+          href="/pricing"
+          style={{
+            display: "inline-block",
+            marginTop: 30,
+            padding: "14px 28px",
+            background: "#4CAF50",
+            color: "white",
+            textDecoration: "none",
+            borderRadius: 8,
+            fontSize: 18
+          }}
+        >
+          View Pricing Plans
+        </a>
+
+        <div style={{ marginTop: 40 }}>
+          <a href="/demo" style={{ marginRight: 20 }}>
+            Try Demo
+          </a>
+          <a href="/">Back to Home</a>
+        </div>
+      </div>
+    );
+  }
+
   const [docType, setDocType] = useState("nda");
 
   const [form, setForm] = useState({
-
     freelancerName: "",
     clientName: "",
     projectTitle: "",
-
     scope: "",
     deliverables: "",
     milestones: "",
-
     paymentAmount: "",
     paymentTerms: "14",
-
     governingLaw: "England & Wales",
-
     confidentialInfo: "",
-
     substitutionClause: "",
-
     invoiceNumber: "",
     debtAmount: "",
-
     proposalObjective: "",
     proposalTimeline: "",
     proposalBudget: "",
-
     invoiceDueDate: "",
-
     businessAddress: "",
-
   });
 
   function handleChange(e) {
@@ -53,124 +89,51 @@ export default function Generator() {
   }
 
   function visibleFields() {
-
     if (docType === "nda") {
-      return [
-        "freelancerName",
-        "clientName",
-        "projectTitle",
-        "confidentialInfo"
-      ];
+      return ["freelancerName", "clientName", "projectTitle", "confidentialInfo"];
     }
-
     if (docType === "sow") {
-      return [
-        "freelancerName",
-        "clientName",
-        "projectTitle",
-        "scope",
-        "deliverables",
-        "milestones",
-        "paymentAmount"
-      ];
+      return ["freelancerName", "clientName", "projectTitle", "scope", "deliverables", "milestones", "paymentAmount"];
     }
-
     if (docType === "agreement") {
-      return [
-        "freelancerName",
-        "clientName",
-        "projectTitle",
-        "scope",
-        "substitutionClause",
-        "paymentAmount"
-      ];
+      return ["freelancerName", "clientName", "projectTitle", "scope", "substitutionClause", "paymentAmount"];
     }
-
     if (docType === "latepayment") {
-      return [
-        "freelancerName",
-        "clientName",
-        "invoiceNumber",
-        "debtAmount"
-      ];
+      return ["freelancerName", "clientName", "invoiceNumber", "debtAmount"];
     }
-
     if (docType === "invoice") {
-      return [
-        "freelancerName",
-        "clientName",
-        "invoiceNumber",
-        "paymentAmount",
-        "invoiceDueDate",
-        "businessAddress"
-      ];
+      return ["freelancerName", "clientName", "invoiceNumber", "paymentAmount", "invoiceDueDate", "businessAddress"];
     }
-
     if (docType === "proposal") {
-      return [
-        "freelancerName",
-        "clientName",
-        "projectTitle",
-        "proposalObjective",
-        "proposalTimeline",
-        "proposalBudget"
-      ];
+      return ["freelancerName", "clientName", "projectTitle", "proposalObjective", "proposalTimeline", "proposalBudget"];
     }
-
     return [];
   }
 
   function fieldLabel(name) {
-
     const labels = {
-
       freelancerName: "Your Name",
-
       clientName: "Client Name",
-
       projectTitle: "Project Title",
-
       scope: "Scope of Work",
-
       deliverables: "Deliverables",
-
       milestones: "Milestones",
-
       paymentAmount: "Payment Amount (£)",
-
       confidentialInfo: "Confidential Information",
-
       substitutionClause: "Substitution Clause",
-
       invoiceNumber: "Invoice Number",
-
       debtAmount: "Outstanding Amount",
-
       proposalObjective: "Proposal Objective",
-
       proposalTimeline: "Timeline",
-
       proposalBudget: "Budget",
-
       invoiceDueDate: "Due Date",
-
       businessAddress: "Business Address"
-
     };
-
     return labels[name];
   }
 
   function renderField(field) {
-
-    const textareaFields = [
-      "scope",
-      "deliverables",
-      "milestones",
-      "confidentialInfo",
-      "substitutionClause",
-      "proposalObjective"
-    ];
+    const textareaFields = ["scope", "deliverables", "milestones", "confidentialInfo", "substitutionClause", "proposalObjective"];
 
     if (textareaFields.includes(field)) {
       return (
@@ -179,13 +142,7 @@ export default function Generator() {
           value={form[field]}
           onChange={handleChange}
           placeholder={fieldLabel(field)}
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 10,
-            minHeight: 90,
-            borderRadius: 8
-          }}
+          style={{ width: "100%", padding: 12, marginTop: 10, minHeight: 90, borderRadius: 8 }}
         />
       );
     }
@@ -196,20 +153,15 @@ export default function Generator() {
         value={form[field]}
         onChange={handleChange}
         placeholder={fieldLabel(field)}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 10,
-          borderRadius: 8
-        }}
+        style={{ width: "100%", padding: 12, marginTop: 10, borderRadius: 8 }}
       />
     );
   }
 
   function generateText() {
-
     const today = new Date().toLocaleDateString("en-GB");
-if (docType === "nda") {
+
+    if (docType === "nda") {
       return `
 PROFESSIONAL NON-DISCLOSURE AGREEMENT (NDA)
 
@@ -290,7 +242,6 @@ Template provided for informational purposes only. Legal review recommended.
 `.trim();
     }
 
-
     if (docType === "sow") {
       return `
 STATEMENT OF WORK (SOW)
@@ -361,7 +312,6 @@ DISCLAIMER:
 Template provided for informational purposes only.
 `.trim();
     }
-
 
     if (docType === "agreement") {
       return `
@@ -448,7 +398,8 @@ DISCLAIMER:
 Legal and tax review recommended.
 `.trim();
     }
-if (docType === "latepayment") {
+
+    if (docType === "latepayment") {
       return `
 FINAL DEMAND FOR PAYMENT
 
@@ -502,7 +453,6 @@ Template provided for informational purposes only.
 `.trim();
     }
 
-
     if (docType === "invoice") {
       return `
 COMMERCIAL INVOICE
@@ -554,7 +504,6 @@ Thank you for your business.
 Generated by DocPilot AI
 `.trim();
     }
-
 
     if (docType === "proposal") {
       return `
@@ -623,83 +572,48 @@ Generated by DocPilot AI
   }
 
   const generated = generateText();
-async function downloadDocx() {
 
+  async function downloadDocx() {
     const lines = generated.split("\n");
 
     const paragraphs = lines.map((line) => {
-
       const upper = line === line.toUpperCase() && line.length > 3;
 
       if (upper) {
         return new Paragraph({
           heading: HeadingLevel.HEADING_2,
-          children: [
-            new TextRun({
-              text: line,
-              bold: true
-            })
-          ],
-          spacing: {
-            after: 200
-          }
+          children: [new TextRun({ text: line, bold: true })],
+          spacing: { after: 200 }
         });
       }
 
       return new Paragraph({
-        children: [
-          new TextRun({
-            text: line,
-            size: 22
-          })
-        ],
-        spacing: {
-          after: 120
-        }
+        children: [new TextRun({ text: line, size: 22 })],
+        spacing: { after: 120 }
       });
     });
 
     const doc = new Document({
-      sections: [
-        {
-          children: paragraphs
-        }
-      ]
+      sections: [{ children: paragraphs }]
     });
 
     const blob = await Packer.toBlob(doc);
-
-    saveAs(
-      blob,
-      `DocPilot-${docType}-${new Date().toISOString().slice(0,10)}.docx`
-    );
+    saveAs(blob, `DocPilot-\( {docType}- \){new Date().toISOString().slice(0, 10)}.docx`);
   }
 
-
   function downloadPdf() {
-
     const pdf = new jsPDF();
-
     const lines = generated.split("\n");
-
     let y = 20;
 
     pdf.setFont("helvetica");
 
     lines.forEach((line) => {
-
       const upper = line === line.toUpperCase() && line.length > 3;
-
-      if (upper) {
-        pdf.setFontSize(14);
-      } else {
-        pdf.setFontSize(11);
-      }
+      pdf.setFontSize(upper ? 14 : 11);
 
       const wrapped = pdf.splitTextToSize(line, 180);
-
       pdf.text(wrapped, 15, y);
-
       y += wrapped.length * 7;
 
       if (y > 270) {
@@ -708,17 +622,13 @@ async function downloadDocx() {
       }
     });
 
-    pdf.save(
-      `DocPilot-${docType}-${new Date().toISOString().slice(0,10)}.pdf`
-    );
+    pdf.save(`DocPilot-\( {docType}- \){new Date().toISOString().slice(0, 10)}.pdf`);
   }
-
 
   function copyDocument() {
     navigator.clipboard.writeText(generated);
     alert("Document copied");
   }
-
 
   return (
     <div
@@ -730,34 +640,18 @@ async function downloadDocx() {
         background: "#fafafa"
       }}
     >
-
-      <h1
-        style={{
-          fontSize: 42,
-          marginBottom: 10
-        }}
-      >
+      <h1 style={{ fontSize: 42, marginBottom: 10 }}>
         DocPilot AI Professional
       </h1>
 
-      <p
-        style={{
-          marginBottom: 25,
-          color: "#555"
-        }}
-      >
+      <p style={{ marginBottom: 25, color: "#555" }}>
         Professional UK Legal & Business Document Generator
       </p>
 
-
       <select
         value={docType}
-        onChange={(e)=>setDocType(e.target.value)}
-        style={{
-          width: "100%",
-          padding: 14,
-          borderRadius: 8
-        }}
+        onChange={(e) => setDocType(e.target.value)}
+        style={{ width: "100%", padding: 14, borderRadius: 8 }}
       >
         <option value="nda">NDA Agreement</option>
         <option value="sow">Statement of Work</option>
@@ -767,64 +661,34 @@ async function downloadDocx() {
         <option value="proposal">Business Proposal</option>
       </select>
 
+      <h2 style={{ marginTop: 30 }}>Fill Document Details</h2>
 
-      <h2
-        style={{
-          marginTop: 30
-        }}
-      >
-        Fill Document Details
-      </h2>
-
-
-      {visibleFields().map((field)=>(
-        <div key={field}>
-          {renderField(field)}
-        </div>
+      {visibleFields().map((field) => (
+        <div key={field}>{renderField(field)}</div>
       ))}
-
 
       <select
         name="paymentTerms"
         value={form.paymentTerms}
         onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 14,
-          marginTop: 15,
-          borderRadius: 8
-        }}
+        style={{ width: "100%", padding: 14, marginTop: 15, borderRadius: 8 }}
       >
         <option value="7">7 Days</option>
         <option value="14">14 Days</option>
         <option value="30">30 Days</option>
       </select>
 
-
       <select
         name="governingLaw"
         value={form.governingLaw}
         onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: 14,
-          marginTop: 15,
-          borderRadius: 8
-        }}
+        style={{ width: "100%", padding: 14, marginTop: 15, borderRadius: 8 }}
       >
         <option value="England & Wales">England & Wales</option>
         <option value="Scotland">Scotland</option>
       </select>
 
-
-      <h2
-        style={{
-          marginTop: 40
-        }}
-      >
-        Generated Document
-      </h2>
-
+      <h2 style={{ marginTop: 40 }}>Generated Document</h2>
 
       <textarea
         value={generated}
@@ -841,13 +705,7 @@ async function downloadDocx() {
         }}
       />
 
-
-      <div
-        style={{
-          marginTop: 25
-        }}
-      >
-
+      <div style={{ marginTop: 25 }}>
         <button
           onClick={downloadDocx}
           style={{
@@ -860,9 +718,8 @@ async function downloadDocx() {
             fontSize: 18
           }}
         >
-          📥 DOCX
+          DOCX
         </button>
-
 
         <button
           onClick={downloadPdf}
@@ -877,9 +734,8 @@ async function downloadDocx() {
             marginLeft: 10
           }}
         >
-          📄 PDF
+          PDF
         </button>
-
 
         <button
           onClick={copyDocument}
@@ -894,23 +750,14 @@ async function downloadDocx() {
             marginLeft: 10
           }}
         >
-          📋 Copy
+          Copy
         </button>
-
       </div>
 
-
-      <p
-        style={{
-          marginTop: 30,
-          fontSize: 13,
-          color: "#666"
-        }}
-      >
+      <p style={{ marginTop: 30, fontSize: 13, color: "#666" }}>
         Professional templates generated by DocPilot AI.
         These documents are provided for informational purposes only and do not constitute legal advice.
       </p>
-
     </div>
   );
 }
