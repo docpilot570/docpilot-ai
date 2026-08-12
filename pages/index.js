@@ -36,7 +36,7 @@ export default function Home() {
           </button>
         </a>
 
-        <a href="/generator">
+        <a href="/demo">
           <button
             style={{
               padding: "14px 28px",
@@ -130,3 +130,4 @@ export default function Home() {
     </div>
   );
 }
+
