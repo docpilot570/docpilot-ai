@@ -48,7 +48,7 @@ export default function Home() {
               borderRadius: 6,
             }}
           >
-            UK Freelancer Generator (DOCX)
+            Try Free Demo
           </button>
         </a>
       </div>
@@ -62,6 +62,7 @@ export default function Home() {
         }}
       >
         <h2>What is DocPilot AI?</h2>
+
         <p>
           DocPilot AI is an online service that helps freelancers and sole
           traders generate UK business documents in minutes.
@@ -73,6 +74,7 @@ export default function Home() {
         </p>
 
         <h2>How it works</h2>
+
         <ol>
           <li>Select document type</li>
           <li>Enter your details</li>
@@ -80,12 +82,17 @@ export default function Home() {
         </ol>
 
         <h2>Supported markets</h2>
+
         <p>United Kingdom (England & Wales / Scotland)</p>
       </div>
 
       <div style={{ marginTop: 50 }}>
         <h2>Pricing</h2>
-        <p>Choose your plan to unlock premium UK freelancer templates.</p>
+
+        <p>
+          Choose your plan to unlock premium UK freelancer templates.
+        </p>
+
         <p>
           <a href="/pricing">View pricing plans</a>
         </p>
@@ -93,6 +100,7 @@ export default function Home() {
 
       <div style={{ marginTop: 50 }}>
         <h2>Contact</h2>
+
         <p>Email: docpilot.ai.service@gmail.com</p>
       </div>
 
