@@ -29,19 +29,6 @@ export default function Home() {
               padding: "14px 28px",
               fontSize: 18,
               cursor: "pointer",
-              marginRight: 12,
-            }}
-          >
-            Try Demo
-          </button>
-        </a>
-
-        <a href="/demo">
-          <button
-            style={{
-              padding: "14px 28px",
-              fontSize: 18,
-              cursor: "pointer",
               background: "#4CAF50",
               color: "white",
               border: "none",
@@ -82,7 +69,6 @@ export default function Home() {
         </ol>
 
         <h2>Supported markets</h2>
-
         <p>United Kingdom (England & Wales / Scotland)</p>
       </div>
 
@@ -100,7 +86,6 @@ export default function Home() {
 
       <div style={{ marginTop: 50 }}>
         <h2>Contact</h2>
-
         <p>Email: docpilot.ai.service@gmail.com</p>
       </div>
 
@@ -138,4 +123,5 @@ export default function Home() {
     </div>
   );
 }
+
 
