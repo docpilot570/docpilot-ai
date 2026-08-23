@@ -22,17 +22,18 @@ export default async function handler(req, res) {
       });
     }
 
+    // First: find by email only (no active filter)
     const { data, error } = await supabase
       .from("customers")
       .select("email, plan, active, expires_at")
       .eq("email", email)
-      .eq("active", true)
       .maybeSingle();
 
     if (error) {
       console.error("Supabase error:", error);
       return res.status(500).json({
         error: "Could not check access",
+        details: error.message,
         hasAccess: false,
       });
     }
@@ -40,17 +41,30 @@ export default async function handler(req, res) {
     if (!data) {
       return res.status(200).json({
         hasAccess: false,
-        message: "No active subscription found",
+        message: "No row found for this email",
+        searchedEmail: email,
       });
     }
 
+    // Row found — now check active + expiry
     const now = new Date();
     const expiresAt = data.expires_at ? new Date(data.expires_at) : null;
+    const isActive = data.active === true;
+    const notExpired = !expiresAt || expiresAt > now;
 
-    if (expiresAt && expiresAt < now) {
+    if (!isActive) {
+      return res.status(200).json({
+        hasAccess: false,
+        message: "Subscription is not active",
+        found: data,
+      });
+    }
+
+    if (!notExpired) {
       return res.status(200).json({
         hasAccess: false,
         message: "Subscription expired",
+        found: data,
       });
     }
 
@@ -63,7 +77,9 @@ export default async function handler(req, res) {
     console.error("Check access error:", error);
     return res.status(500).json({
       error: "Access check failed",
+      details: String(error),
       hasAccess: false,
     });
   }
 }
+
