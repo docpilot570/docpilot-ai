@@ -33,6 +33,7 @@ export default function Footer() {
           <a href="/dashboard" style={{marginRight: 15}}>Dashboard</a>
           <a href="/terms" style={{marginRight: 15}}>Terms</a>
           <a href="/privacy" style={{marginRight: 15}}>Privacy</a>
+          <a href="/refund" style={{marginRight: 15}}>Refund</a> 
           <a href="/contact">Contact</a>
         </div>
 
