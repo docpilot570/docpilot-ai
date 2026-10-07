@@ -13,6 +13,7 @@ export default function App({ Component, pageProps }) {
         strategy="afterInteractive"
         onLoad={() => {
           if (typeof window !== "undefined" && window.Paddle) {
+            window.Paddle.Environment.set("production");
             window.Paddle.Initialize({
               token: "live_78ab03411e9dc1a8e24db5d7949",
             });
