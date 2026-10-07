@@ -3,7 +3,7 @@ export default function Pricing() {
     border: "1px solid #ccc",
     borderRadius: 10,
     padding: 20,
-    marginTop: 20
+    marginTop: 20,
   };
 
   const buttonStyle = {
@@ -12,9 +12,16 @@ export default function Pricing() {
     fontSize: 16,
     backgroundColor: "#4CAF50",
     color: "white",
-    textDecoration: "none",
+    border: "none",
     borderRadius: 6,
-    marginTop: 10
+    marginTop: 10,
+    marginRight: 10,
+    cursor: "pointer",
+  };
+
+  const secondaryButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: "#2e7d32",
   };
 
   const offerStyle = {
@@ -25,8 +32,18 @@ export default function Pricing() {
     marginTop: 20,
     marginBottom: 10,
     fontWeight: "bold",
-    color: "#2e7d32"
+    color: "#2e7d32",
   };
+
+  function openCheckout(priceId) {
+    if (typeof window === "undefined" || !window.Paddle) {
+      alert("Payment system is loading. Please wait a second and try again.");
+      return;
+    }
+    window.Paddle.Checkout.open({
+      items: [{ priceId, quantity: 1 }],
+    });
+  }
 
   return (
     <div
@@ -34,23 +51,22 @@ export default function Pricing() {
         maxWidth: 950,
         margin: "40px auto",
         fontFamily: "Arial, sans-serif",
-        padding: "0 20px"
+        padding: "0 20px",
       }}
     >
       <h1>Pricing Plans</h1>
 
       <p>
-        Choose the plan that matches your workflow. 
-        Built for freelancers, agencies and enterprise teams.
+        Choose the plan that matches your workflow. Built for freelancers,
+        agencies and enterprise teams.
       </p>
 
       <div style={offerStyle}>
-        🚀 Launch Offer: Save 20% with Annual Billing
+        Launch Offer: Save 20% with Annual Billing
       </div>
 
       <h2 style={{ marginTop: 40 }}>Individual Plans</h2>
 
-      {/* STARTER */}
       <div style={cardStyle}>
         <h2>Starter</h2>
         <p style={{ fontSize: 22 }}>
@@ -67,15 +83,17 @@ export default function Pricing() {
           <li>Unlimited Late Payment Letter Generator</li>
           <li>Email Support</li>
         </ul>
-        <a
-          href="https://payhip.com/order?link=DWVGs&pricing_plan=2VGJjRRnGD"
+        <button
+          type="button"
           style={buttonStyle}
+          onClick={() =>
+            openCheckout("pri_01m3wkg689k7e99g5d8da04xze")
+          }
         >
           Buy Starter — £9.99
-        </a>
+        </button>
       </div>
 
-      {/* PRO */}
       <div style={cardStyle}>
         <h2>Pro</h2>
         <p style={{ fontSize: 22 }}>
@@ -96,15 +114,26 @@ export default function Pricing() {
           <li>Single User Access</li>
           <li>Priority Support</li>
         </ul>
-        <a
-          href="https://payhip.com/order?link=DWVGs&pricing_plan=20zAXXvwWr"
+        <button
+          type="button"
           style={buttonStyle}
+          onClick={() =>
+            openCheckout("pri_01m3wkrah33jw9e7qcym017f0p")
+          }
         >
-          Buy Pro — £29.99
-        </a>
+          Buy Pro monthly — £29.99
+        </button>
+        <button
+          type="button"
+          style={secondaryButtonStyle}
+          onClick={() =>
+            openCheckout("pri_01m3wmvrwv3cx7hq1v8wc0109q")
+          }
+        >
+          Buy Pro yearly — £288
+        </button>
       </div>
 
-      {/* BUSINESS */}
       <div style={cardStyle}>
         <h2>Business</h2>
         <p style={{ fontSize: 22 }}>
@@ -125,17 +154,28 @@ export default function Pricing() {
           <li>Priority Email Support</li>
           <li>Contractor Management Workflow</li>
         </ul>
-        <a
-          href="https://payhip.com/order?link=DWVGs&pricing_plan=nLWRaagvGa"
+        <button
+          type="button"
           style={buttonStyle}
+          onClick={() =>
+            openCheckout("pri_01m3wn90z2f0zs463r9g0b3r39")
+          }
         >
-          Buy Business — £59.99
-        </a>
+          Buy Business monthly — £59.99
+        </button>
+        <button
+          type="button"
+          style={secondaryButtonStyle}
+          onClick={() =>
+            openCheckout("pri_01m3wnfv6acnrz992vxmqedrkk")
+          }
+        >
+          Buy Business yearly — £576
+        </button>
       </div>
 
       <h2 style={{ marginTop: 50 }}>Business & Enterprise Solutions</h2>
 
-      {/* AGENCY */}
       <div style={cardStyle}>
         <h2>Agency</h2>
         <p style={{ fontSize: 22 }}>
@@ -155,15 +195,26 @@ export default function Pricing() {
           <li>Dedicated Account Manager</li>
           <li>SLA Priority Support</li>
         </ul>
-        <a
-          href="https://payhip.com/order?link=DWVGs&pricing_plan=PAWg3xR4WK"
+        <button
+          type="button"
           style={buttonStyle}
+          onClick={() =>
+            openCheckout("pri_01m3wnmkypzkms8sj4r1g9etm1")
+          }
         >
-          Buy Agency — £100
-        </a>
+          Buy Agency monthly — £100
+        </button>
+        <button
+          type="button"
+          style={secondaryButtonStyle}
+          onClick={() =>
+            openCheckout("pri_01m3wnrf39jytfyfa8kw5r5eb8")
+          }
+        >
+          Buy Agency yearly — £960
+        </button>
       </div>
 
-      {/* WHITE LABEL */}
       <div style={cardStyle}>
         <h2>White Label Enterprise</h2>
         <p style={{ fontSize: 22 }}>
@@ -184,33 +235,41 @@ export default function Pricing() {
           <li>Resell the Platform Under Your Own Brand</li>
           <li>Dedicated Enterprise Support</li>
         </ul>
-        <a
-          href="/contact"
-          style={buttonStyle}
-        >
+        <a href="/contact" style={{ ...buttonStyle, textDecoration: "none" }}>
           Contact Sales
         </a>
       </div>
 
       <p style={{ marginTop: 40 }}>
-        Need a custom enterprise solution? <a href="/contact">Contact us directly</a>.
+        Need a custom enterprise solution?{" "}
+        <a href="/contact">Contact us directly</a>.
       </p>
 
-      <div
-        style={{
-          marginTop: 30,
-          textAlign: "center",
-          fontSize: "15px"
-        }}
-      >
-        <a href="/" style={{ marginRight: 15 }}>Home</a>
-        <a href="/demo" style={{ marginRight: 15 }}>Demo</a>
-        <a href="/pricing" style={{ marginRight: 15 }}>Pricing</a>
-        <a href="/dashboard" style={{ marginRight: 15, fontWeight: "bold", color: "#4CAF50" }}>
+      <div style={{ marginTop: 30, textAlign: "center", fontSize: "15px" }}>
+        <a href="/" style={{ marginRight: 15 }}>
+          Home
+        </a>
+        <a href="/demo" style={{ marginRight: 15 }}>
+          Demo
+        </a>
+        <a href="/pricing" style={{ marginRight: 15 }}>
+          Pricing
+        </a>
+        <a
+          href="/dashboard"
+          style={{ marginRight: 15, fontWeight: "bold", color: "#4CAF50" }}
+        >
           Dashboard
         </a>
-        <a href="/terms" style={{ marginRight: 15 }}>Terms</a>
-        <a href="/privacy" style={{ marginRight: 15 }}>Privacy</a>
+        <a href="/terms" style={{ marginRight: 15 }}>
+          Terms
+        </a>
+        <a href="/privacy" style={{ marginRight: 15 }}>
+          Privacy
+        </a>
+        <a href="/refund" style={{ marginRight: 15 }}>
+          Refund
+        </a>
         <a href="/contact">Contact</a>
       </div>
     </div>
