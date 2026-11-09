@@ -11,9 +11,6 @@ function escapeHtml(value) {
 }
 
 function getTelegramWebhookSecret(adminSecret) {
-  if (process.env.TELEGRAM_WEBHOOK_SECRET) {
-    return process.env.TELEGRAM_WEBHOOK_SECRET;
-  }
   return createHash("sha256").update(adminSecret).digest("hex");
 }
 
@@ -53,7 +50,7 @@ export default async function handler(req, res) {
   }
 
   if (!/^[A-Za-z0-9_-]{1,256}$/.test(webhookSecret)) {
-    return res.status(400).send("Значение TELEGRAM_WEBHOOK_SECRET содержит недопустимые символы. Удалите эту отдельную переменную из Vercel, чтобы код автоматически создал совместимый секрет из TELEGRAM_LEADS_SECRET.");
+    return res.status(400).send("Значение TELEGRAM_WEBHOOK_SECRET содержит недопустимые символы. Код должен автоматически создать совместимый секрет из TELEGRAM_LEADS_SECRET.");
   }
 
   try {
