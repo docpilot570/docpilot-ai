@@ -1,11 +1,15 @@
+import { createHash } from "crypto";
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ ok: false, message: "Method not allowed" });
   }
 
+  const adminSecret = process.env.TELEGRAM_LEADS_SECRET;
   const secret =
-    process.env.TELEGRAM_WEBHOOK_SECRET || process.env.TELEGRAM_LEADS_SECRET;
+    process.env.TELEGRAM_WEBHOOK_SECRET ||
+    (adminSecret ? createHash("sha256").update(adminSecret).digest("hex") : "");
   const supplied = req.headers["x-telegram-bot-api-secret-token"];
 
   if (!secret || supplied !== secret) {
@@ -27,11 +31,9 @@ export default async function handler(req, res) {
 
   let reply;
   if (command === "/start" || command.startsWith("/start@")) {
-    reply =
-      "Привет! Это DocPilot Lead Finder.\n\nБот подключён. Система поиска потенциальных клиентов DocPilot AI находится в настройке.\n\n/help — информация о боте";
+    reply = "Привет! Это DocPilot Lead Finder.\n\nБот подключён. Система поиска потенциальных клиентов DocPilot AI находится в настройке.\n\n/help — информация о боте";
   } else if (command === "/help" || command.startsWith("/help@")) {
-    reply =
-      "DocPilot Lead Finder предназначен для поиска коммерческих возможностей, оценки потенциальных клиентов и отправки подборок в этот чат. Автоматические сообщения и заявки в LinkedIn отправляться не будут.";
+    reply = "DocPilot Lead Finder предназначен для поиска коммерческих возможностей, оценки потенциальных клиентов и отправки подборок в этот чат. Автоматические сообщения и заявки в LinkedIn отправляться не будут.";
   } else {
     reply = "Пока доступны команды /start и /help.";
   }
