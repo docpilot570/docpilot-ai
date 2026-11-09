@@ -1,3 +1,5 @@
+import { createHash } from "crypto";
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (char) => ({
     "&": "&amp;",
@@ -8,11 +10,17 @@ function escapeHtml(value) {
   })[char]);
 }
 
+function getTelegramWebhookSecret(adminSecret) {
+  if (process.env.TELEGRAM_WEBHOOK_SECRET) {
+    return process.env.TELEGRAM_WEBHOOK_SECRET;
+  }
+  return createHash("sha256").update(adminSecret).digest("hex");
+}
+
 export default async function handler(req, res) {
   const adminSecret = process.env.TELEGRAM_LEADS_SECRET;
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const webhookSecret =
-    process.env.TELEGRAM_WEBHOOK_SECRET || process.env.TELEGRAM_LEADS_SECRET;
+  const webhookSecret = adminSecret ? getTelegramWebhookSecret(adminSecret) : "";
   const webhookUrl = "https://docpilot-ai-lime.vercel.app/api/telegram-webhook";
 
   if (req.method === "GET") {
@@ -23,7 +31,7 @@ export default async function handler(req, res) {
 <title>Подключение DocPilot Telegram</title>
 <body style="font:16px system-ui;max-width:520px;margin:40px auto;padding:0 18px">
 <h2>Подключение Telegram-бота</h2>
-<p>Введите текущее значение <b>TELEGRAM_LEADS_SECRET</b> из Environment Variables проекта Vercel. Секрет не отображается на странице и не отправляется в чат.</p>
+<p>Введите текущее значение <b>TELEGRAM_LEADS_SECRET</b> из Environment Variables проекта Vercel. Оно используется только для подтверждения доступа. Допустимый секрет Telegram будет создан автоматически. Значение не отображается на странице и не отправляется в чат.</p>
 <form method="post">
 <input type="password" name="secret" autocomplete="off" required style="box-sizing:border-box;width:100%;padding:12px;margin:12px 0" placeholder="TELEGRAM_LEADS_SECRET">
 <button style="padding:12px 18px">Подключить Telegram</button>
@@ -45,7 +53,7 @@ export default async function handler(req, res) {
   }
 
   if (!/^[A-Za-z0-9_-]{1,256}$/.test(webhookSecret)) {
-    return res.status(400).send("Формат TELEGRAM webhook secret недопустим. Разрешены только латинские буквы, цифры, дефис и подчёркивание; длина от 1 до 256 символов.");
+    return res.status(400).send("Значение TELEGRAM_WEBHOOK_SECRET содержит недопустимые символы. Удалите эту отдельную переменную из Vercel, чтобы код автоматически создал совместимый секрет из TELEGRAM_LEADS_SECRET.");
   }
 
   try {
