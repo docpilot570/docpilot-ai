@@ -7,9 +7,7 @@ export default async function handler(req, res) {
   }
 
   const adminSecret = process.env.TELEGRAM_LEADS_SECRET;
-  const secret =
-    process.env.TELEGRAM_WEBHOOK_SECRET ||
-    (adminSecret ? createHash("sha256").update(adminSecret).digest("hex") : "");
+  const secret = adminSecret ? createHash("sha256").update(adminSecret).digest("hex") : "";
   const supplied = req.headers["x-telegram-bot-api-secret-token"];
 
   if (!secret || supplied !== secret) {
