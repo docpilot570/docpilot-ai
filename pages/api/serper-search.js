@@ -1,12 +1,12 @@
+import { createHash, timingSafeEqual } from "crypto";
 import { buildLeadResults, getSearchThemes, getThemeQuery } from "../../lib/serper-lead-finder";
 
 function safeEqual(a, b) {
   if (typeof a !== "string" || typeof b !== "string" || !a || !b) return false;
   // Compare fixed-length hashes to avoid leaking secret length or partial matches.
-  const crypto = require("crypto");
-  const left = crypto.createHash("sha256").update(a).digest();
-  const right = crypto.createHash("sha256").update(b).digest();
-  return crypto.timingSafeEqual(left, right);
+  const left = createHash("sha256").update(a).digest();
+  const right = createHash("sha256").update(b).digest();
+  return timingSafeEqual(left, right);
 }
 
 export default async function handler(req, res) {
