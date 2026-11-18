@@ -111,7 +111,7 @@ export default async function handler(req, res) {
         console.error("Lead search diagnostic:", errorCode);
         if (errorCode === "SERPER_NOT_CONFIGURED") {
           reply = "Поиск не настроен: отсутствует SERPER_API_KEY.";
-        } else if (/^SERPER_HTTP_\\d{3}$/.test(errorCode)) {
+        } else if (/^SERPER_HTTP_\d{3}$/.test(errorCode)) {
           reply = "Serper отклонил запрос (HTTP " + errorCode.slice(-3) + "). Это обычно связано с ключом, лимитом или параметрами запроса. Сам ключ бот не показывает.";
         } else {
           reply = "Не удалось связаться с Serper или обработать ответ (" + errorCode.slice(0, 80) + "). Ключ доступа не выводится. Пришлите мне этот текст ошибки.";
