@@ -50,7 +50,14 @@ async function runSearch(theme) {
   });
 
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error("SERPER_HTTP_" + response.status);
+  if (!response.ok) {
+    const detail = String(data?.message || data?.error || data?.detail || "").slice(0, 180);
+    const safeDetail = detail.replace(new RegExp(apiKey.replace(/[.*+?^${}()|[\\]\\]/g, "\\\\  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error("SERPER_HTTP_" + response.status);"), "g"), "[redacted]");
+    const error = new Error("SERPER_HTTP_" + response.status);
+    error.publicDetail = safeDetail;
+    throw error;
+  }
 
   return buildLeadResults(data.organic, theme);
 }
@@ -112,7 +119,7 @@ export default async function handler(req, res) {
         if (errorCode === "SERPER_NOT_CONFIGURED") {
           reply = "Поиск не настроен: отсутствует SERPER_API_KEY.";
         } else if (/^SERPER_HTTP_\d{3}$/.test(errorCode)) {
-          reply = "Serper отклонил запрос (HTTP " + errorCode.slice(-3) + "). Это обычно связано с ключом, лимитом или параметрами запроса. Сам ключ бот не показывает.";
+          reply = "Serper отклонил запрос (HTTP " + errorCode.slice(-3) + ")." + (error?.publicDetail ? "\\nОтвет Serper: " + error.publicDetail : "") + "\\nКлюч доступа бот не показывает.";
         } else {
           reply = "Не удалось связаться с Serper или обработать ответ (" + errorCode.slice(0, 80) + "). Ключ доступа не выводится. Пришлите мне этот текст ошибки.";
         }
